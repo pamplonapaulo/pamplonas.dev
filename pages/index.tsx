@@ -3,11 +3,11 @@ import Head from 'next/head'
 import HomeTemplate from 'templates/home'
 import styles from 'styles/Home.module.css'
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Pamplona&apos;s Development</title>
+        <title>Pamplona&apos;s Dev</title>
         <meta name="description" content="Frontend Web Development" />
         <link rel="icon" href="/favicon.png" />
       </Head>
@@ -16,4 +16,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default HomePage

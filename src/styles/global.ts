@@ -5,6 +5,28 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      border: 0;
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      outline: none;
+      width: 0;
+      height: 0;;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.01);
+      height: 2px !important;
+      width: 2px !important;
+    }
   }
 
   :root {
@@ -28,10 +50,8 @@ const GlobalStyles = createGlobalStyle`
   body {
     background: black;
     color: var(--white);
-    //font-family: --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    //font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,Bitstream Vera Sans Mono, Courier New, monospace;
-    font-family: monospace;
     font-weight: 100;
+    font-family: 'Abel', sans-serif;
   }
 
   a {
