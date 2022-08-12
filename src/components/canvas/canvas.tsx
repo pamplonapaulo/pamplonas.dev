@@ -19,12 +19,12 @@ const Canvas = () => {
     ctx: CanvasRenderingContext2D | null,
     x: number,
     y: number,
-    size: number
+    side: number
   ) => {
     ctx!.beginPath()
     ctx!.fillStyle = colorLottery(colors)
     ctx!.lineWidth = 1
-    ctx!.fillRect(x, y, size, size)
+    ctx!.fillRect(x, y, side, side)
   }
 
   const colorLottery = (colors: string[]) => {
@@ -37,8 +37,14 @@ const Canvas = () => {
     const width = window.innerWidth > 1480 ? 1480 : window.innerWidth
     const height = window.innerHeight - 83
 
-    let size = width / 15 - 10
-    let area = 10
+    const area = width / 13
+    const side = area * 0.9
+    const margin = area * 0.1
+
+    const quantityX = 13
+    console.log('resta:', width % (2 * margin + side))
+    console.log('resta:', height % (2 * margin + side))
+    let quantityY = height / (2 * margin + side)
 
     if (canvasRef.current) {
       canvasRef.current.height = height
@@ -47,29 +53,12 @@ const Canvas = () => {
       canvasCtxRef.current = canvasRef.current.getContext('2d')
       let ctx = canvasCtxRef.current
 
-      for (let i = 1; i <= 13; i++) {
-        drawSquare(ctx, (size + area) * i, 10, size)
+      for (let y = 0; y <= quantityY; y++) {
+        for (let x = 0; x <= quantityX; x++) {
+          drawSquare(ctx, (side + margin) * x, (side + margin) * y, side)
+        }
       }
 
-      for (let i = 1; i <= 13; i++) {
-        drawSquare(ctx, (size + area) * i, size + area + area, size)
-      }
-
-      for (let i = 1; i <= 13; i++) {
-        drawSquare(ctx, (size + area) * i, (size + area + area - 5) * 2, size)
-      }
-
-      for (let i = 1; i <= 13; i++) {
-        drawSquare(ctx, (size + area) * i, (size + area + area - 7.5) * 3, size)
-      }
-
-      for (let i = 1; i <= 13; i++) {
-        drawSquare(ctx, (size + area) * i, (size + area + area - 8.5) * 4, size)
-      }
-
-      for (let i = 1; i <= 13; i++) {
-        drawSquare(ctx, (size + area) * i, (size + area + area - 9) * 5, size)
-      }
       /*
       ctx!.beginPath()
       ctx!.lineWidth = 1

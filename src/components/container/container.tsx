@@ -5,11 +5,23 @@ type Props = {
   justify: string
   bgColor?: string
   isHeader?: boolean
+  maxWidth?: string
 }
 
-const Container = ({ children, justify, bgColor, isHeader }: Props) => {
+const Container = ({
+  children,
+  justify,
+  bgColor,
+  isHeader,
+  maxWidth,
+}: Props) => {
   return (
-    <S.Container justify={justify} bgColor={bgColor} isHeader={isHeader}>
+    <S.Container
+      justify={justify}
+      bgColor={bgColor}
+      isHeader={isHeader}
+      maxWidth={maxWidth}
+    >
       {children}
     </S.Container>
   )

@@ -4,6 +4,7 @@ export const Container = styled.section<{
   justify: string
   bgColor?: string
   isHeader?: boolean
+  maxWidth?: string
 }>`
   align-items: center;
   background: ${(p) => (p.bgColor ? p.bgColor : '#000')};
@@ -13,7 +14,8 @@ export const Container = styled.section<{
   margin: 0 auto;
   width: 100%;
   height: ${(p) => (p.isHeader ? '100%' : 'calc(100vh - 83px)')};
-  max-width: 1480px;
+  //max-width: 1480px;
+  max-width: ${(p) => (p.maxWidth ? p.maxWidth : '100%')};
   flex-direction: row;
   padding: 0 1rem;
 `

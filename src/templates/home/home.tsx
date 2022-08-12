@@ -6,7 +6,7 @@ const HomeTemplate = () => {
   return (
     <>
       <S.Main>
-        <Container justify={'space-around'}>
+        <Container justify={'space-around'} maxWidth={'1480px'}>
           <Canvas />
         </Container>
       </S.Main>

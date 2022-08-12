@@ -7,7 +7,7 @@ import * as S from './styles'
 const Nav = () => {
   return (
     <S.Nav>
-      <Container justify={'space-between'} isHeader={true}>
+      <Container justify={'space-between'} isHeader={true} maxWidth={'1480px'}>
         <Image
           layout={'fixed'}
           src="/pamplona.png"
