@@ -16,12 +16,12 @@ const Canvas = () => {
     side: number
   ) => {
     ctx!.beginPath()
-    ctx!.fillStyle = colorLottery(colors)
+    ctx!.fillStyle = colorRandom(colors)
     ctx!.lineWidth = 1
     ctx!.fillRect(x, y, side, side)
   }
 
-  const colorLottery = (colors: string[]) => {
+  const colorRandom = (colors: string[]) => {
     const randomIndex = Math.floor(Math.random() * colors.length)
     const item = colors[randomIndex]
     return item
@@ -81,7 +81,7 @@ const Canvas = () => {
           const posX = x === 0 ? margin / 2 : (side + margin) * x + margin / 2
           const posY = y === 0 ? margin / 2 : (side + margin) * y + margin / 2
 
-          drawSquare(ctx, posX, posY, side)
+          if (Math.random() > 0.5) drawSquare(ctx, posX, posY, side)
         }
       }
 
