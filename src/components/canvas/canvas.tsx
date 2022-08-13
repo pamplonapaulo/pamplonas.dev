@@ -5,15 +5,9 @@ const Canvas = () => {
   let canvasRef = useRef<HTMLCanvasElement | null>(null)
   let canvasCtxRef = React.useRef<CanvasRenderingContext2D | null>(null)
 
-  const blue = '#3494DF'
-  const green = '#38C1AD'
-  const purple = '#60079F'
-  const red = '#F32C43'
-  const yellow = '#f8f32b'
-  const black = '#000000'
-  const white = '#fff'
+  const colors = ['#3494DF', '#38C1AD', '#60079F', '#F32C43', '#f8f32b']
 
-  const colors = [blue, green, purple, red, yellow]
+  const header = 83
 
   const drawSquare = (
     ctx: CanvasRenderingContext2D | null,
@@ -35,27 +29,59 @@ const Canvas = () => {
 
   useEffect(() => {
     const width = window.innerWidth > 1480 ? 1480 : window.innerWidth
-    const height = window.innerHeight - 83
+    const calcHeight = window.innerHeight - header * 3
 
-    const area = width / 13
-    const side = area * 0.9
-    const margin = area * 0.1
+    const quantityX =
+      window.innerWidth >= 1480
+        ? 100
+        : window.innerWidth >= 1200
+        ? 90
+        : window.innerWidth >= 1024
+        ? 80
+        : window.innerWidth >= 768
+        ? 70
+        : window.innerWidth >= 480
+        ? 60
+        : 50
 
-    const quantityX = 13
-    console.log('resta:', width % (2 * margin + side))
-    console.log('resta:', height % (2 * margin + side))
-    let quantityY = height / (2 * margin + side)
+    const size =
+      window.innerWidth >= 1480
+        ? 0.3
+        : window.innerWidth >= 1200
+        ? 0.35
+        : window.innerWidth >= 1024
+        ? 0.4
+        : window.innerWidth >= 768
+        ? 0.45
+        : window.innerWidth >= 480
+        ? 0.5
+        : 0.7
+
+    const padding = 1 - size
+
+    const calcArea = width / quantityX
+    const calcMargin = calcArea * padding
+
+    const area = (width - calcMargin) / quantityX
+    const side = area * size
+    const margin = area * padding
+
+    const quantityY = Math.floor(calcHeight / (margin + side))
+    const height = quantityY * (margin + side)
 
     if (canvasRef.current) {
       canvasRef.current.height = height
-      canvasRef.current.width = width
+      canvasRef.current.width = width - margin
 
       canvasCtxRef.current = canvasRef.current.getContext('2d')
       let ctx = canvasCtxRef.current
 
       for (let y = 0; y <= quantityY; y++) {
         for (let x = 0; x <= quantityX; x++) {
-          drawSquare(ctx, (side + margin) * x, (side + margin) * y, side)
+          const posX = x === 0 ? margin / 2 : (side + margin) * x + margin / 2
+          const posY = y === 0 ? margin / 2 : (side + margin) * y + margin / 2
+
+          drawSquare(ctx, posX, posY, side)
         }
       }
 
