@@ -7,7 +7,7 @@ export const Container = styled.section<{
   maxWidth?: string
 }>`
   align-items: center;
-  background: ${(p) => (p.bgColor ? p.bgColor : '#000')};
+  background: ${(p) => (p.bgColor ? p.bgColor : 'transparent')};
   display: flex;
   flex-wrap: wrap;
   justify-content: ${(p) => p.justify};

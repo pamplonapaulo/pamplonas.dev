@@ -75,6 +75,17 @@ const Canvas = () => {
 
       canvasCtxRef.current = canvasRef.current.getContext('2d')
       let ctx = canvasCtxRef.current
+      // ctx!.fillStyle = 'hsl(0, 0%, 98%)'
+      // ctx!.fillRect(0, 0, width, height)
+
+      // Gradient foreground
+      // const fill = ctx!.createLinearGradient(0, 0, width, height)
+      // fill.addColorStop(0, 'black')
+      // fill.addColorStop(1, '#333')
+
+      // Fill rectangle
+      // ctx!.fillStyle = fill
+      // ctx!.fillRect(margin, margin, width - margin * 2, height - margin * 2)
 
       for (let y = 0; y <= quantityY; y++) {
         for (let x = 0; x <= quantityX; x++) {
