@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useRef, useMemo } from 'react'
 import * as S from './styles'
 
-const Canvas = () => {
+const Sketch = () => {
   let canvasRef = useRef<HTMLCanvasElement | null>(null)
   let canvasCtxRef = React.useRef<CanvasRenderingContext2D | null>(null)
 
@@ -143,4 +143,4 @@ const Canvas = () => {
   return <S.Canvas ref={canvasRef} />
 }
 
-export default Canvas
+export default Sketch
