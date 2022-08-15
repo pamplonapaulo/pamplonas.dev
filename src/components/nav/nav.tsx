@@ -12,8 +12,8 @@ const Nav = () => {
           layout={'fixed'}
           src="/pamplona.png"
           alt="Picture of the author"
-          width={60}
-          height={60}
+          width={50}
+          height={50}
         />
         <Title />
       </Container>

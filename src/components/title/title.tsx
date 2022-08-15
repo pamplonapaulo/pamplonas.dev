@@ -3,7 +3,7 @@ import * as S from './styles'
 const Title = () => {
   return (
     <>
-      <S.P>{'paulo pamplona frontend web development'}</S.P>
+      <S.P>{'pamplonas.dev'}</S.P>
     </>
   )
 }

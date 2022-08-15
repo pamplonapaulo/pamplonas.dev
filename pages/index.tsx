@@ -7,7 +7,7 @@ const HomePage: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Pamplona&apos;s Dev</title>
+        <title>pamplonas.dev</title>
         <meta name="description" content="Frontend Web Development" />
         <link rel="icon" href="/favicon.png" />
       </Head>
