@@ -1,6 +1,14 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
+
+  @font-face {
+    font-family: 'NeutraText';
+    src: url('/fonts/NeutraText-Bold.otf');
+    font-weight: normal;
+    font-style: normal;
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -51,7 +59,7 @@ const GlobalStyles = createGlobalStyle`
     background: black;
     color: var(--white);
     font-weight: 100;
-    font-family: 'Abel', sans-serif;
+    font-family: 'NeutraText';
   }
 
   a {
