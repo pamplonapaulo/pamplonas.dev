@@ -12,19 +12,47 @@ const Sketch = () => {
 
   const header = 83
 
+  let eixoX = 0
+  let eixoY = 0
+
+  const drawStroke = useCallback(
+    (
+      ctx: CanvasRenderingContext2D | null,
+      x: number,
+      y: number,
+      side: number,
+      color: string
+    ) => {
+      const inner = side / 3.75
+
+      ctx!.beginPath()
+      ctx!.rect(x, y, side, side)
+      ctx!.lineWidth = 1
+      ctx!.stroke()
+      //ctx!.strokeStyle = color
+
+      ctx!.beginPath()
+      ctx!.rect(x + inner / 2, y + inner / 2, side - inner, side - inner)
+      ctx!.stroke()
+      ctx!.strokeStyle = color
+    },
+    []
+  )
+
   const drawSquare = useCallback(
     (
       ctx: CanvasRenderingContext2D | null,
       x: number,
       y: number,
-      side: number
+      side: number,
+      color: string
     ) => {
       ctx!.beginPath()
-      ctx!.fillStyle = colorRandom(colors)
+      ctx!.fillStyle = color
       ctx!.lineWidth = 1
       ctx!.fillRect(x, y, side, side)
     },
-    [colors]
+    []
   )
 
   const colorRandom = (colors: string[]) => {
@@ -32,6 +60,40 @@ const Sketch = () => {
     const item = colors[randomIndex]
     return item
   }
+
+  const timer = (seconds: number) => {
+    let time = seconds * 1000
+    return new Promise((res) => setTimeout(res, time))
+  }
+
+  const buildDraw = useCallback(
+    async (
+      ctx: CanvasRenderingContext2D | null,
+      quantityX: number,
+      quantityY: number,
+      margin: number,
+      side: number
+    ) => {
+      for (let y = 0; y <= quantityY; y++) {
+        for (let x = 0; x <= quantityX; x++) {
+          const posX = x === 0 ? margin / 2 : (side + margin) * x + margin / 2
+          const posY = y === 0 ? margin / 2 : (side + margin) * y + margin / 2
+
+          const random = Math.random()
+
+          const color = colorRandom(colors)
+
+          if (random > 0.7) {
+            drawSquare(ctx, posX, posY, side, color)
+          } else if (random < 0.2) {
+            drawStroke(ctx, posX, posY, side, color)
+          }
+          //await timer(0.01)
+        }
+      }
+    },
+    []
+  )
 
   useEffect(() => {
     const width = window.innerWidth > 1480 ? 1480 : window.innerWidth
@@ -50,20 +112,25 @@ const Sketch = () => {
         ? 60
         : 50
 
-    const size =
-      window.innerWidth >= 1480
-        ? 0.3
-        : window.innerWidth >= 1200
-        ? 0.35
-        : window.innerWidth >= 1024
-        ? 0.4
-        : window.innerWidth >= 768
-        ? 0.45
-        : window.innerWidth >= 480
-        ? 0.5
-        : 0.7
+    // const quantityX = 100
 
-    const padding = 1 - size
+    // const size =
+    //   window.innerWidth >= 1480
+    //     ? 0.3
+    //     : window.innerWidth >= 1200
+    //     ? 0.35
+    //     : window.innerWidth >= 1024
+    //     ? 0.4
+    //     : window.innerWidth >= 768
+    //     ? 0.45
+    //     : window.innerWidth >= 480
+    //     ? 0.5
+    //     : 0.7
+
+    const size = 1.5
+
+    //const padding = 1 - size
+    const padding = 2 - size
 
     const calcArea = width / quantityX
     const calcMargin = calcArea * padding
@@ -81,64 +148,10 @@ const Sketch = () => {
 
       canvasCtxRef.current = canvasRef.current.getContext('2d')
       let ctx = canvasCtxRef.current
-      // ctx!.fillStyle = 'hsl(0, 0%, 98%)'
-      // ctx!.fillRect(0, 0, width, height)
 
-      // Gradient foreground
-      // const fill = ctx!.createLinearGradient(0, 0, width, height)
-      // fill.addColorStop(0, 'black')
-      // fill.addColorStop(1, '#333')
-
-      // Fill rectangle
-      // ctx!.fillStyle = fill
-      // ctx!.fillRect(margin, margin, width - margin * 2, height - margin * 2)
-
-      for (let y = 0; y <= quantityY; y++) {
-        for (let x = 0; x <= quantityX; x++) {
-          const posX = x === 0 ? margin / 2 : (side + margin) * x + margin / 2
-          const posY = y === 0 ? margin / 2 : (side + margin) * y + margin / 2
-
-          if (Math.random() > 0.5) drawSquare(ctx, posX, posY, side)
-        }
-      }
-
-      /*
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = blue
-      ctx!.rect(10, 120, 100, 100)
-      ctx!.stroke()
-
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = purple
-      ctx!.rect(120, 120, 100, 100)
-      ctx!.stroke()
-
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = red
-      ctx!.rect(230, 120, 100, 100)
-      ctx!.stroke()
-
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = yellow
-      ctx!.rect(340, 120, 100, 100)
-      ctx!.stroke()
-
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = green
-      ctx!.rect(450, 120, 100, 100)
-      ctx!.stroke()
-      */
-
-      // ctx!.beginPath()
-      // ctx!.arc(300, 300, 100, 0, Math.PI * 2)
-      // ctx!.stroke()
+      buildDraw(ctx, quantityX, quantityY, margin, side)
     }
-  }, [drawSquare])
+  }, [drawSquare, drawStroke, colors, buildDraw])
 
   return <S.Canvas ref={canvasRef} />
 }

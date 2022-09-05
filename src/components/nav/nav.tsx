@@ -1,21 +1,14 @@
 import Container from 'components/container'
 import Title from 'components/title'
-import Image from 'next/image'
+import Logo from 'components/logo'
 
 import * as S from './styles'
 
 const Nav = () => {
   return (
     <S.Nav>
-      <Container justify={'space-between'} isHeader={true} maxWidth={'1480px'}>
-        <Image
-          layout={'fixed'}
-          src="/pamplona.png"
-          alt="Picture of the author"
-          width={50}
-          height={50}
-        />
-        <Title />
+      <Container justify={'start'} isHeader={true} maxWidth={'1480px'}>
+        <Logo />
       </Container>
     </S.Nav>
   )
