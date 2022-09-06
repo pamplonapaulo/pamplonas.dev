@@ -4,6 +4,7 @@ export const Frame = styled.div`
   background: #efd81f;
   width: 50px;
   height: 50px;
+  min-height: 50px;
   padding: 0 2px 0 0;
   display: flex;
   justify-content: end;
