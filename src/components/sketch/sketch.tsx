@@ -1,8 +1,11 @@
 import React, { useEffect, useCallback, useRef, useMemo } from 'react'
 import * as S from './styles'
+import Image from 'next/image'
 
 const Sketch = () => {
   let canvasRef = useRef<HTMLCanvasElement | null>(null)
+  let buttonRef = useRef<HTMLAnchorElement | null>(null)
+
   let canvasCtxRef = React.useRef<CanvasRenderingContext2D | null>(null)
 
   const colors = useMemo(
@@ -29,7 +32,6 @@ const Sketch = () => {
       ctx!.rect(x, y, side, side)
       ctx!.lineWidth = 1
       ctx!.stroke()
-      //ctx!.strokeStyle = color
 
       ctx!.beginPath()
       ctx!.rect(x + inner / 2, y + inner / 2, side - inner, side - inner)
@@ -61,10 +63,10 @@ const Sketch = () => {
     return item
   }
 
-  const timer = (seconds: number) => {
-    let time = seconds * 1000
-    return new Promise((res) => setTimeout(res, time))
-  }
+  // const timer = (seconds: number) => {
+  //   let time = seconds * 1000
+  //   return new Promise((res) => setTimeout(res, time))
+  // }
 
   const buildDraw = useCallback(
     async (
@@ -153,7 +155,30 @@ const Sketch = () => {
     }
   }, [drawSquare, drawStroke, colors, buildDraw])
 
-  return <S.Canvas ref={canvasRef} />
+  const downloadCanvas = () => {
+    if (buttonRef && canvasRef.current) {
+      const img = canvasRef.current.toDataURL('image/png')
+      const downloadImg = img.replace(
+        /^data:image\/[^;]/,
+        'data:application/octet-stream'
+      )
+      buttonRef.current!.href = downloadImg
+    }
+  }
+
+  return (
+    <>
+      <S.Canvas ref={canvasRef} />
+      <S.Anchor
+        ref={buttonRef}
+        download="canvas.png"
+        href="#"
+        onClick={downloadCanvas}
+      >
+        Download Canvas
+      </S.Anchor>
+    </>
+  )
 }
 
 export default Sketch
