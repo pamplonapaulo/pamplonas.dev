@@ -23,8 +23,25 @@ const CanvasArt = () => {
   const randomColor = colorRandom(colors)
 
   useEffect(() => {
-    const width = 800
-    const height = 800
+    let width, height
+
+    // const width = window.innerWidth - window.innerWidth * 0.05
+    // const height = width
+    // if (window.innerWidth > 786) {
+    //   width = 800
+    //   height = 800
+    // } else {
+    //   width = 500
+    //   height = 500
+    // }
+
+    if (window.innerWidth > window.innerHeight) {
+      height = window.innerHeight - window.innerHeight * 0.15
+      width = height
+    } else {
+      width = window.innerWidth
+      height = width
+    }
 
     if (canvasRef.current) {
       canvasRef.current.height = width
