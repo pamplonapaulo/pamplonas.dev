@@ -13,7 +13,7 @@ export const Container = styled.section<{
   justify-content: ${(p) => p.justify};
   margin: 0 auto;
   width: 100%;
-  height: ${(p) => (p.isHeader ? '100%' : 'calc(100vh - 83px)')};
+  height: ${(p) => (p.isHeader ? '100%' : 'calc(100vh - 83px - 33px)')};
   //max-width: 1480px;
   max-width: ${(p) => (p.maxWidth ? p.maxWidth : '100%')};
   flex-direction: row;

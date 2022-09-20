@@ -18,6 +18,10 @@ const Sketch = () => {
   let eixoX = 0
   let eixoY = 0
 
+  const degToRad = (deg: number) => {
+    return (deg / 180) * Math.PI
+  }
+
   const drawStroke = useCallback(
     (
       ctx: CanvasRenderingContext2D | null,
@@ -47,7 +51,8 @@ const Sketch = () => {
       x: number,
       y: number,
       side: number,
-      color: string
+      color: string,
+      random: number
     ) => {
       ctx!.beginPath()
       ctx!.fillStyle = color
@@ -85,11 +90,17 @@ const Sketch = () => {
 
           const color = colorRandom(colors)
 
+          //ctx!.save()
+          ctx!.translate(0, 5)
+          ctx!.rotate(degToRad(0.1))
+
           if (random > 0.7) {
-            drawSquare(ctx, posX, posY, side, color)
+            drawSquare(ctx, posX, posY, side, color, random)
           } else if (random < 0.2) {
             drawStroke(ctx, posX, posY, side, color)
           }
+
+          //ctx!.restore()
           //await timer(0.01)
         }
       }

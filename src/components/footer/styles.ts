@@ -11,6 +11,7 @@ export const Anchor = styled.a`
 export const Footer = styled.footer`
   align-items: center;
   background: #1b1b1b;
+  //background: #ccc;
   border-top: 1px solid #222;
   color: var(--white);
   display: flex;
