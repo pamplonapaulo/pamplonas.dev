@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+export const Wrap = styled.div`
+  display: flex;
+  align-items: baseline;
+`
+
 export const Letter = styled.h1`
   font-size: 4em;
   text-transform: uppercase;
@@ -10,7 +15,7 @@ export const Letter = styled.h1`
 
 export const Span = styled.span`
   font-size: 2em;
-  transform: translateY(18px);
+  transform: translateY(7px);
   cursor: default;
 `
 
