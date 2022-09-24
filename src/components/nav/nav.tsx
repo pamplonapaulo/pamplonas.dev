@@ -1,16 +1,20 @@
-import Container from 'components/container'
-import Logo from 'components/logo'
-import MenuIcon from 'components/menu-icon'
-
+// import { useState } from 'react'
 import * as S from './styles'
 
+import { useMenu } from 'contexts'
+
 const Nav = () => {
+  const { menu } = useMenu()
+
   return (
-    <S.Nav>
-      <Container justify={'space-between'} isHeader={true} maxWidth={'1480px'}>
-        <Logo />
-        <MenuIcon />
-      </Container>
+    <S.Nav isVisible={menu}>
+      <S.Item>About</S.Item>
+      <S.Item>Portifolio</S.Item>
+      <S.Item>Stack</S.Item>
+      <S.Item>Resume</S.Item>
+      <S.Item>Articles</S.Item>
+      <S.Item>Generative Art</S.Item>
+      <S.Item>Contact</S.Item>
     </S.Nav>
   )
 }

@@ -1,11 +1,12 @@
-import { useState } from 'react'
 import * as S from './styles'
 
+import { useMenu } from 'contexts'
+
 const MenuIcon = () => {
-  const [menuState, setMenuState] = useState(false)
+  const { menu, setMenu } = useMenu()
 
   return (
-    <S.Wrap isClicked={menuState} onClick={() => setMenuState(!menuState)}>
+    <S.Wrap isClicked={menu} onClick={() => setMenu(!menu)}>
       <S.Dot />
       <S.Dot />
       <S.Dot />

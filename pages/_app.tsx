@@ -1,8 +1,11 @@
 import React, { useEffect, useRef } from 'react'
+import Header from 'components/header'
 import Nav from 'components/nav'
 import Footer from 'components/footer'
 
 import { useRouter } from 'next/router'
+
+import { MenuProvider } from 'contexts'
 
 import GlobalStyles from 'styles/global'
 import styled from 'styled-components'
@@ -20,11 +23,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <GlobalStyles />
-      <Nav />
-      <Main ref={pageWrap}>
-        <Component {...pageProps} />
-      </Main>
-      <Footer />
+      <MenuProvider>
+        <Header />
+        <Main ref={pageWrap}>
+          <Nav />
+          <Component {...pageProps} />
+        </Main>
+        <Footer />
+      </MenuProvider>
     </>
   )
 }
@@ -36,6 +42,8 @@ const Main = styled.main`
   justify-content: center;
   flex-direction: column;
   height: calc(100% - 83px);
+  position: relative;
+  overflow: hidden;
 `
 
 export default MyApp
