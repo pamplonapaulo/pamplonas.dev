@@ -4,15 +4,12 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from 'styles/Home.module.css'
 
-const PlaygroundPage: NextPage = () => {
+const GenerativeArtPage: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Playground | pamplonas.dev</title>
-        <meta
-          name="description"
-          content="Página dedicada a exercícios e experiências de aprendizado"
-        />
+        <title>Generative Art | pamplonas.dev</title>
+        <meta name="description" content="Generative Art" />
         <link rel="icon" href="/favicon.png" />
       </Head>
       <PlaygroundTemplate />
@@ -20,4 +17,4 @@ const PlaygroundPage: NextPage = () => {
   )
 }
 
-export default PlaygroundPage
+export default GenerativeArtPage

@@ -3,15 +3,12 @@ import Head from 'next/head'
 import SketchTemplate from 'templates/sketch'
 import styles from 'styles/Home.module.css'
 
-const SketchPage: NextPage = () => {
+const ContactPage: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Sketch | pamplonas.dev</title>
-        <meta
-          name="description"
-          content="Canvas sketches using Canvas-Sketch Library"
-        />
+        <title>Contact | pamplonas.dev</title>
+        <meta name="description" content="Contact" />
         <link rel="icon" href="/favicon.png" />
       </Head>
       <SketchTemplate />
@@ -19,4 +16,4 @@ const SketchPage: NextPage = () => {
   )
 }
 
-export default SketchPage
+export default ContactPage
