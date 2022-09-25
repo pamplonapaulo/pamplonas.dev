@@ -15,6 +15,7 @@ export const Anchor = styled.a`
   letter-spacing: 2px;
   position: absolute;
   transition: ease 0.2s all;
+  z-index: 0;
 
   &:hover {
     color: #f32c43;

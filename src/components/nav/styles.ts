@@ -13,7 +13,7 @@ export const Item = styled.p`
   width: 100%;
   transform: translateX(0%);
   transition: 0.2s ease all;
-  z-index: 0;
+  z-index: 1;
 
   @media only screen and (min-width: 1024px) {
     padding-left: 5rem;
@@ -21,13 +21,14 @@ export const Item = styled.p`
     &:hover {
       background: #222;
       width: 110%;
-      z-index: 1;
+      z-index: 2;
     }
   }
 `
 
 export const Nav = styled.nav<{ isVisible?: boolean }>`
   align-items: end;
+  background: #000;
   border-left: 1px solid #222;
   display: flex;
   flex-direction: column;
@@ -37,6 +38,7 @@ export const Nav = styled.nav<{ isVisible?: boolean }>`
   right: 0;
   transform: ${(p) => (p.isVisible ? 'translateX(0);' : 'translateX(100%);')};
   transition: 0.2s ease all;
+  z-index: 1;
 
   @media only screen and (min-width: 1024px) {
     width: 400px;
