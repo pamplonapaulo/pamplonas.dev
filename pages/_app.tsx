@@ -41,7 +41,8 @@ const Main = styled.main`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: calc(100% - 83px);
+  min-height: calc(100% - 83px);
+  padding-top: 83px;
   position: relative;
   overflow: hidden;
 `

@@ -1,4 +1,4 @@
-import PlaygroundTemplate from 'templates/playground'
+import AboutTemplate from 'templates/about'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -12,7 +12,7 @@ const PlaygroundPage: NextPage = () => {
         <meta name="description" content="About Paulo Pamplona" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <PlaygroundTemplate />
+      <AboutTemplate />
     </div>
   )
 }

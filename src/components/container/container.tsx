@@ -2,6 +2,8 @@ import * as S from './styles'
 
 type Props = {
   children: React.ReactNode
+  alignItems?: string
+  direction?: string
   justify: string
   bgColor?: string
   isHeader?: boolean
@@ -10,6 +12,8 @@ type Props = {
 
 const Container = ({
   children,
+  alignItems,
+  direction,
   justify,
   bgColor,
   isHeader,
@@ -17,7 +21,9 @@ const Container = ({
 }: Props) => {
   return (
     <S.Container
+      alignItems={alignItems}
       justify={justify}
+      direction={direction}
       bgColor={bgColor}
       isHeader={isHeader}
       maxWidth={maxWidth}

@@ -34,8 +34,9 @@ export const Nav = styled.nav<{ isVisible?: boolean }>`
   flex-direction: column;
   width: 100vw;
   height: 100%;
-  position: absolute;
+  position: fixed;
   right: 0;
+  top: 83px;
   transform: ${(p) => (p.isVisible ? 'translateX(0);' : 'translateX(100%);')};
   transition: 0.2s ease all;
   z-index: 1;
