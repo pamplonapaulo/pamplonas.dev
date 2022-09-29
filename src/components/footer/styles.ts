@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Anchor = styled.a`
   display: flex;
+  font-family: 'NeutraText';
   justify-content: center;
   align-items: center;
   flex-grow: 1;

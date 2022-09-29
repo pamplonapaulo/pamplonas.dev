@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const Title = styled.h1`
-  /* background: blue; */
   color: #ccc;
+  font-family: 'NeutraText';
   font-size: 7rem;
   font-weight: normal;
   margin-top: 16px;
@@ -18,8 +18,8 @@ export const Title = styled.h1`
 export const Headline = styled.h2``
 
 export const Paragr = styled.p`
-  /* background: green; */
   color: #ccc;
+  font-family: 'NeutraText';
   font-size: 2.25em;
   font-weight: normal;
   line-height: 2;

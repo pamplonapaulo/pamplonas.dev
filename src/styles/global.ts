@@ -2,33 +2,6 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
 
-  @font-face {
-    font-family: 'NeutraText';
-    src: url('/fonts/NeutraText-Book.otf') format("truetype");
-    font-weight: normal;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'NeutraText';
-    src: url('/fonts/NeutraText-BookItalic.otf') format("truetype");
-    font-weight: bold;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: 'NeutraText';
-    src: url('/fonts/NeutraText-BoldItalic.otf') format("truetype");
-    font-weight: bold;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: 'NeutraText';
-    src: url('/fonts/NeutraText-Bold.otf') format("truetype");
-    font-weight: bold;
-    font-style: normal;
-  }
-
   * {
     margin: 0;
     padding: 0;
@@ -78,8 +51,6 @@ const GlobalStyles = createGlobalStyle`
   body {
     background: black;
     color: var(--white);
-    font-weight: 100;
-    font-family: 'NeutraText';
   }
 
   a {

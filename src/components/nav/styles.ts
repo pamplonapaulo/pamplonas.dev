@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 
-export const Item = styled.p`
+export const Item = styled.p<{ isCurrent: boolean }>`
   background: #000;
   box-shadow: 0px 1px 0 #222, 0px -1px 0 #222;
-  color: #ccc;
-  cursor: pointer;
+  color: ${(p) => (p.isCurrent ? '#efd81f' : '#ccc')};
+  cursor: ${(p) => (p.isCurrent ? 'default' : 'pointer')};
+  font-family: 'NeutraText';
   font-size: 2rem;
   line-height: 4;
   margin: 0px;
@@ -19,9 +20,13 @@ export const Item = styled.p`
     padding-left: 5rem;
 
     &:hover {
-      background: #222;
+      /* background: #222;
       width: 110%;
-      z-index: 2;
+      z-index: 2; */
+
+      background: ${(p) => (p.isCurrent ? '#000' : '#222')};
+      width: ${(p) => (p.isCurrent ? '100%' : '110%')};
+      z-index: ${(p) => (p.isCurrent ? '1' : '2')};
     }
   }
 `

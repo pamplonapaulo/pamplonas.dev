@@ -6,6 +6,7 @@ export const Wrap = styled.div`
 `
 
 export const Letter = styled.h1`
+  font-family: 'NeutraText';
   font-size: 4em;
   font-weight: bold;
   text-transform: uppercase;
@@ -15,6 +16,7 @@ export const Letter = styled.h1`
 `
 
 export const Span = styled.span`
+  font-family: 'NeutraText';
   font-size: 2em;
   font-weight: bold;
   transform: translateY(7px);
