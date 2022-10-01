@@ -223,7 +223,7 @@ const ResumeTemplate = () => {
           </S.Descr>
 
           <S.Headline>
-            Social Communication's Bachelor's Degree, B.A.
+            Social Communication&apos;s Bachelor&apos;s Degree, B.A.
           </S.Headline>
           <S.Headline>Helio Alonso Integrated College (Facha).</S.Headline>
           <S.Headline>Aug 1998 - Sep 2004</S.Headline>
@@ -258,7 +258,7 @@ const ResumeTemplate = () => {
               target="blank"
               href="https://www.udemy.com/course/react-avancado/"
             >
-              Course's webpage
+              Course&apos;s webpage
             </S.Anchor>
           </S.Descr>
 

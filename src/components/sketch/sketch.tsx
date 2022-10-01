@@ -105,7 +105,7 @@ const Sketch = () => {
         }
       }
     },
-    []
+    [colors, drawSquare, drawStroke]
   )
 
   useEffect(() => {
