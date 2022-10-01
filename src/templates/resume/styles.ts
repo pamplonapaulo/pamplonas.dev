@@ -47,6 +47,7 @@ export const Headline = styled.p`
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   @media only screen and (min-width: 1024px) {
     width: 50%;
@@ -56,6 +57,7 @@ export const Section = styled.section`
 export const Anchor = styled.a`
   color: #38c1ad;
   cursor: pointer;
+  line-break: anywhere;
   margin-top: 5px;
   text-decoration: underline;
   width: fit-content;
@@ -68,6 +70,7 @@ export const Descr = styled.p`
   font-family: 'NeutraText';
   font-size: 2em;
   font-weight: normal;
+  /* line-break: anywhere; */
   line-height: 1.5;
   margin: 5px 0 30px 0;
   text-align: left;
