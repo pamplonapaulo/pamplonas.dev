@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useLayoutEffect } from 'react'
 import { useRouter } from 'next/router'
 import * as S from './styles'
 
@@ -12,12 +12,11 @@ const Nav = () => {
   const handleClick = (path: string) => {
     router.push({ pathname: path }, path)
     setMenu(false)
-    setCurrent(path)
   }
 
   useEffect(() => {
-    setCurrent(window.location.pathname)
-  }, [])
+    setCurrent(router.pathname)
+  }, [router.pathname])
 
   return (
     <S.Nav isVisible={menu}>

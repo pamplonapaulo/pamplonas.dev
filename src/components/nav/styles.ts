@@ -20,10 +20,6 @@ export const Item = styled.p<{ isCurrent: boolean }>`
     padding-left: 5rem;
 
     &:hover {
-      /* background: #222;
-      width: 110%;
-      z-index: 2; */
-
       background: ${(p) => (p.isCurrent ? '#000' : '#222')};
       width: ${(p) => (p.isCurrent ? '100%' : '110%')};
       z-index: ${(p) => (p.isCurrent ? '1' : '2')};
