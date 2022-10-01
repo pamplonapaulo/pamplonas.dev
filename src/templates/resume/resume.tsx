@@ -37,7 +37,7 @@ const ResumeTemplate = () => {
             I ever had. It uses Strapi headless CMS to handle my backend needs.
             I expect to finish the project by the end of May.
             <S.Anchor target="blank" href="https://gorilla.vercel.app/">
-              https://gorilla.vercel.app/
+              gorilla.vercel.app
             </S.Anchor>
             <S.Anchor
               target="blank"
@@ -65,7 +65,7 @@ const ResumeTemplate = () => {
               target="blank"
               href="https://www.automatedgymsolutions.com/"
             >
-              automatedgymsolutions.com/
+              automatedgymsolutions.com
             </S.Anchor>
             <S.Anchor
               target="blank"
@@ -91,7 +91,7 @@ const ResumeTemplate = () => {
               target="blank"
               href="https://github.com/pamplonapaulo/heloisa.art/"
             >
-              github.com/pamplonapaulo/heloisa.art/
+              github.com/pamplonapaulo/heloisa.art
             </S.Anchor>
           </S.Descr>
 
@@ -104,13 +104,13 @@ const ResumeTemplate = () => {
             Javascript and CSS at platforms like Vtex e- commerce and WordPress)
             or in the back-end side (dealing with PHP and SQL database).
             <S.Anchor target="blank" href="https://wolffcafe.com.br/">
-              wolffcafe.com.br/
+              wolffcafe.com.br
             </S.Anchor>
             <S.Anchor target="blank" href="https://marimariamakeup.com/">
-              marimariamakeup.com/
+              marimariamakeup.com
             </S.Anchor>
             <S.Anchor target="blank" href="https://brindes.com.br/">
-              brindes.com.br/
+              brindes.com.br
             </S.Anchor>
           </S.Descr>
 
@@ -127,13 +127,13 @@ const ResumeTemplate = () => {
             Bootstrap based template and a bit of PHP handling the
             multi-language feature.
             <S.Anchor target="blank" href="https://ginger.com.br/">
-              ginger.com.br/
+              ginger.com.br
             </S.Anchor>
             <S.Anchor
               target="blank"
               href="https://github.com/pamplonapaulo/jobs/ginger/"
             >
-              github.com/pamplonapaulo/jobs/ginger/
+              github.com/pamplonapaulo/jobs/ginger
             </S.Anchor>
           </S.Descr>
 
@@ -162,7 +162,7 @@ const ResumeTemplate = () => {
               target="blank"
               href="http://www.sdce.edu/job-training/computers/front-end-web-developer/"
             >
-              sdce.edu/job-training/computers/front-end-web-developer/
+              sdce.edu/job-training/computers/front-end-web-developer
             </S.Anchor>
           </S.Descr>
 
@@ -176,7 +176,7 @@ const ResumeTemplate = () => {
               target="blank"
               href="https://educacao-executiva.fgv.br/sp/sao-paulo/"
             >
-              educacao-executiva.fgv.br/sp/sao-paulo/
+              educacao-executiva.fgv.br/sp/sao-paulo
             </S.Anchor>
           </S.Descr>
 
@@ -190,7 +190,7 @@ const ResumeTemplate = () => {
               target="blank"
               href="https://educacao-executiva.fgv.br/sp/sao-paulo/"
             >
-              educacao-executiva.fgv.br/sp/sao-paulo/
+              educacao-executiva.fgv.br/sp/sao-paulo
             </S.Anchor>
           </S.Descr>
 
@@ -204,7 +204,7 @@ const ResumeTemplate = () => {
               target="blank"
               href="https://educacao-executiva.fgv.br/sp/sao-paulo/"
             >
-              educacao-executiva.fgv.br/sp/sao-paulo/
+              educacao-executiva.fgv.br/sp/sao-paulo
             </S.Anchor>
           </S.Descr>
 
@@ -218,7 +218,7 @@ const ResumeTemplate = () => {
               target="blank"
               href="https://educacao-executiva.fgv.br/rj/rio-de-janeiro/"
             >
-              educacao-executiva.fgv.br/rj/rio-de-janeiro/
+              educacao-executiva.fgv.br/rj/rio-de-janeiro
             </S.Anchor>
           </S.Descr>
 
