@@ -12,6 +12,7 @@ export const Item = styled.p<{ isCurrent: boolean }>`
   padding-left: 16px;
   text-align: left;
   width: 100%;
+  text-transform: lowercase;
   transform: translateX(0%);
   transition: 0.2s ease all;
   z-index: 1;

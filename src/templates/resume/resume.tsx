@@ -239,13 +239,7 @@ const ResumeTemplate = () => {
               https://educacao-executiva.fgv.br/rj/rio-de-janeiro/
             </S.Anchor>
           </S.Descr> */}
-          <S.Descr>
-            I belong to a 10-people squad team working to support marketing
-            teams from a top leading global pharmaceutical brand. Our websites
-            are built over a custom platform based on Grapes.js and Drupal. My
-            first experience inside a working environment totally remote and
-            totally international.
-          </S.Descr>
+          <S.Descr>Half of the college emphasized in Journalism.</S.Descr>
         </S.Section>
 
         <S.Section>
