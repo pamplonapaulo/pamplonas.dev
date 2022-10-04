@@ -1,17 +1,17 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import SketchTemplate from 'templates/sketch'
+import StackTemplate from 'templates/stack'
 import styles from 'styles/Home.module.css'
 
 const StackPage: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Stack | pamplonas.dev</title>
+        <title>stack | pamplonas.dev</title>
         <meta name="description" content="Stack" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <SketchTemplate />
+      <StackTemplate />
     </div>
   )
 }

@@ -8,7 +8,7 @@ const ResumePage: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Resume | pamplonas.dev</title>
+        <title>resume | pamplonas.dev</title>
         <meta name="description" content="Resume" />
         <link rel="icon" href="/favicon.png" />
       </Head>

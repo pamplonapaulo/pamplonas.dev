@@ -12,54 +12,42 @@ const AboutTemplate = () => {
         maxWidth={'1480px'}
         // bgColor={'red'}
       >
-        <S.Title>About</S.Title>
+        <S.Section>
+          <S.Title>about</S.Title>
 
-        <S.Paragr>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt,
-          maiores id. Debitis distinctio tempore asperiores, delectus earum
-          neque reprehenderit officia dolores, vero dolorem, inventore
-          necessitatibus illo rerum! Doloribus, obcaecati consequuntur?
-        </S.Paragr>
-        <S.Paragr>
-          Nobis laboriosam laborum quos ex nesciunt eos ab nihil facere iure,
-          sed minus accusamus neque necessitatibus amet? Perferendis, fugiat a
-          alias mollitia cumque natus obcaecati, repellendus velit illo vel
-          accusamus!
-        </S.Paragr>
-        <S.Paragr>
-          Esse voluptate beatae, distinctio consectetur earum nihil perferendis
-          dolore vitae sint libero? Quis ipsa maxime quas asperiores autem,
-          reiciendis eum assumenda, doloribus quod atque similique. At commodi
-          perspiciatis non ut.
-        </S.Paragr>
-        <S.Paragr>
-          Consectetur esse nulla, pariatur facere quae quasi assumenda
-          aspernatur optio maxime nesciunt ea soluta natus. Rem ad eaque fugit,
-          non eius ipsum nemo sunt voluptate odio expedita est porro quia.
-        </S.Paragr>
-        <S.Paragr>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt,
-          maiores id. Debitis distinctio tempore asperiores, delectus earum
-          neque reprehenderit officia dolores, vero dolorem, inventore
-          necessitatibus illo rerum! Doloribus, obcaecati consequuntur?
-        </S.Paragr>
-        <S.Paragr>
-          Nobis laboriosam laborum quos ex nesciunt eos ab nihil facere iure,
-          sed minus accusamus neque necessitatibus amet? Perferendis, fugiat a
-          alias mollitia cumque natus obcaecati, repellendus velit illo vel
-          accusamus!
-        </S.Paragr>
-        <S.Paragr>
-          Esse voluptate beatae, distinctio consectetur earum nihil perferendis
-          dolore vitae sint libero? Quis ipsa maxime quas asperiores autem,
-          reiciendis eum assumenda, doloribus quod atque similique. At commodi
-          perspiciatis non ut.
-        </S.Paragr>
-        <S.Paragr>
-          Consectetur esse nulla, pariatur facere quae quasi assumenda
-          aspernatur optio maxime nesciunt ea soluta natus. Rem ad eaque fugit,
-          non eius ipsum nemo sunt voluptate odio expedita est porro quia.
-        </S.Paragr>
+          <S.Article>
+            <S.Descr>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Dignissimos aliquam fugiat magnam quod, ex earum est, doloribus
+              cupiditate ratione incidunt tenetur? Quod cum voluptatum
+              accusantium saepe fuga cupiditate incidunt excepturi?
+            </S.Descr>
+            <S.Descr>
+              Blanditiis enim laborum optio dolor. Quae beatae natus nihil culpa
+              eligendi harum adipisci suscipit sint aut soluta ut minima non
+              quas, eveniet deleniti reiciendis repudiandae earum modi, maiores
+              qui optio!
+            </S.Descr>
+            <S.Descr>
+              Unde quibusdam reiciendis ullam explicabo quam ut sapiente
+              voluptate dolore commodi, iusto a cupiditate rem, praesentium enim
+              accusamus provident porro dicta nesciunt facilis sit molestiae?
+              Optio perferendis illum maxime suscipit?
+            </S.Descr>
+            <S.Descr>
+              Nostrum quia a, officia, unde corrupti possimus mollitia quod
+              consectetur modi nam placeat dolorum saepe vero, assumenda
+              voluptate dolorem! Eligendi voluptatem neque, minus deleniti
+              officia aliquam temporibus aperiam molestiae fugiat.
+            </S.Descr>
+            <S.Descr>
+              Facilis asperiores fugiat laudantium sunt saepe, nemo rerum iusto,
+              omnis maiores temporibus error autem nulla doloribus delectus eos
+              vitae perferendis nesciunt modi sapiente, fugit soluta quia sit.
+              Possimus, recusandae animi.
+            </S.Descr>
+          </S.Article>
+        </S.Section>
       </Container>
     </>
   )

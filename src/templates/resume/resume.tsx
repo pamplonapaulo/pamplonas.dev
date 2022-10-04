@@ -12,6 +12,8 @@ const ResumeTemplate = () => {
         maxWidth={'1480px'}
         // bgColor={'red'}
       >
+        <S.Title>resume</S.Title>
+
         <S.Section>
           <S.Title>Experience</S.Title>
 

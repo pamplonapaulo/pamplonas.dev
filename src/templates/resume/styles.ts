@@ -16,8 +16,9 @@ import styled from 'styled-components'
 // `
 
 export const Title = styled.p`
-  background: linear-gradient(to right, #000, #38c1ad);
-  color: #ccc;
+  //background: linear-gradient(to right, #000, #38c1ad);
+  border-bottom: solid 1px #38c1ad;
+  color: #38c1ad;
   font-family: 'NeutraText';
   font-size: 3.25em;
   font-weight: normal;
@@ -29,6 +30,11 @@ export const Title = styled.p`
   font-size: 1.75em;
   letter-spacing: 3px;
   text-transform: uppercase;
+
+  &:nth-of-type(1) {
+    border: none;
+    color: #ccc;
+  }
 `
 
 export const Headline = styled.p`
@@ -49,6 +55,12 @@ export const Section = styled.section`
   flex-direction: column;
   width: 100%;
 
+  ${Title} {
+    border-bottom: solid 1px #38c1ad;
+    color: #38c1ad;
+    width: fit-content;
+  }
+
   @media only screen and (min-width: 1024px) {
     width: 50%;
   }
@@ -59,8 +71,14 @@ export const Anchor = styled.a`
   cursor: pointer;
   line-break: anywhere;
   margin-top: 5px;
+  opacity: 0.4;
   text-decoration: underline;
+  transition: 0.2s ease all;
   width: fit-content;
+
+  &:hover {
+    opacity: 1;
+  }
 `
 
 export const Descr = styled.p`
@@ -70,7 +88,6 @@ export const Descr = styled.p`
   font-family: 'NeutraText';
   font-size: 2em;
   font-weight: normal;
-  /* line-break: anywhere; */
   line-height: 1.5;
   margin: 5px 0 30px 0;
   text-align: left;
