@@ -48,7 +48,7 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: start;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `
 
 export const ImgWrap = styled.div`
@@ -60,16 +60,8 @@ export const ImgWrap = styled.div`
 `
 
 export const Item = styled.div`
-  /* height: 185px; */
   width: 30px;
   margin-right: 20px;
-  /* margin: 0 10px 5px 0; */
-
-  /* @media only screen and (min-width: 1024px) {
-    height: 220px;
-    width: 150px;
-    margin: 0 60px 15px 0;
-  } */
 `
 
 export const Descr = styled.p`
@@ -80,7 +72,6 @@ export const Descr = styled.p`
   font-size: 2em;
   font-weight: normal;
   line-height: 1.5;
-  //margin-left: 15px;
   text-align: left;
   width: 100%;
   transition: 0.2s ease all;

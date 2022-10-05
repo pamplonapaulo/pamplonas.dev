@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import CanvasArtTemplate from 'templates/canvasArt'
+import HomeTemplate from 'templates/home'
 import styles from 'styles/Home.module.css'
 
 const HomePage: NextPage = () => {
@@ -11,7 +11,7 @@ const HomePage: NextPage = () => {
         <meta name="description" content="Frontend Web Development" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <CanvasArtTemplate />
+      <HomeTemplate />
     </div>
   )
 }

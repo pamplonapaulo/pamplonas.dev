@@ -1,20 +1,20 @@
-import PlaygroundTemplate from 'templates/playground'
+import PortfolioTemplate from 'templates/portfolio'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from 'styles/Home.module.css'
 
-const PlaygroundPage: NextPage = () => {
+const PortfolioPage: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Portfolio | pamplonas.dev</title>
-        <meta name="description" content="Resume" />
+        <title>portfolio | pamplonas.dev</title>
+        <meta name="description" content="Portfolio" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <PlaygroundTemplate />
+      <PortfolioTemplate />
     </div>
   )
 }
 
-export default PlaygroundPage
+export default PortfolioPage

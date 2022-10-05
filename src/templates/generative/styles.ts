@@ -1,9 +1,5 @@
 import styled from 'styled-components'
 
-export const Article = styled.article`
-  margin: 35px 0;
-`
-
 export const Title = styled.p`
   color: #ccc;
   font-family: 'NeutraText';
@@ -30,6 +26,7 @@ export const Headline = styled.p`
   line-height: 1.2;
   margin-top: 5px;
   text-transform: uppercase;
+  transition: 0.2s all ease;
 `
 
 export const Section = styled.section`
@@ -59,7 +56,23 @@ export const Descr = styled.p`
   font-size: 2em;
   font-weight: normal;
   line-height: 1.5;
-  margin: 5px 0 25px;
+  margin: 5px 0 0px;
   text-align: left;
+  transition: 0.2s all ease;
   width: 100%;
+`
+
+export const Article = styled.article`
+  margin: 35px 0;
+  cursor: pointer;
+
+  &:hover {
+    ${Headline} {
+      color: #efd81f;
+    }
+
+    ${Descr} {
+      color: #efd81f;
+    }
+  }
 `

@@ -10,12 +10,19 @@ const Nav = () => {
   const [current, setCurrent] = useState('')
 
   const handleClick = (path: string) => {
-    router.push({ pathname: path }, path)
-    setMenu(false)
+    if (current !== path) {
+      router.push({ pathname: path }, path)
+      setMenu(false)
+    }
   }
 
   useEffect(() => {
-    setCurrent(router.pathname)
+    const arts = router.pathname.match('/arts/')
+    if (arts !== null) {
+      setCurrent('/generative')
+    } else {
+      setCurrent(router.pathname)
+    }
   }, [router.pathname])
 
   return (

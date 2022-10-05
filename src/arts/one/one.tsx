@@ -3,7 +3,7 @@ import * as S from './styles'
 import Image from 'next/image'
 import { degToRad, randomRange } from 'utils/canvas'
 
-const CanvasArt = () => {
+const ArtOne = () => {
   let canvasRef = useRef<HTMLCanvasElement | null>(null)
   let buttonRef = useRef<HTMLAnchorElement | null>(null)
 
@@ -139,4 +139,4 @@ const CanvasArt = () => {
   )
 }
 
-export default CanvasArt
+export default ArtOne

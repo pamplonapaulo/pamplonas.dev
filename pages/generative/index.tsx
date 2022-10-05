@@ -1,4 +1,4 @@
-import PlaygroundTemplate from 'templates/playground'
+import GenerativeTemplate from 'templates/generative'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -8,11 +8,11 @@ const GenerativeArtPage: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Generative Art | pamplonas.dev</title>
+        <title>generative art | pamplonas.dev</title>
         <meta name="description" content="Generative Art" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <PlaygroundTemplate />
+      <GenerativeTemplate />
     </div>
   )
 }
