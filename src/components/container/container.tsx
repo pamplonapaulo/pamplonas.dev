@@ -1,4 +1,5 @@
 import * as S from './styles'
+import { useMenu } from 'contexts'
 
 type Props = {
   children: React.ReactNode
@@ -8,6 +9,7 @@ type Props = {
   bgColor?: string
   isHeader?: boolean
   maxWidth?: string
+  hideMenu?: boolean
 }
 
 const Container = ({
@@ -18,7 +20,10 @@ const Container = ({
   bgColor,
   isHeader,
   maxWidth,
+  hideMenu = true,
 }: Props) => {
+  const { setMenu } = useMenu()
+
   return (
     <S.Container
       alignItems={alignItems}
@@ -27,6 +32,7 @@ const Container = ({
       bgColor={bgColor}
       isHeader={isHeader}
       maxWidth={maxWidth}
+      onClick={hideMenu ? () => setMenu(false) : undefined}
     >
       {children}
     </S.Container>

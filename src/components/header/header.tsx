@@ -7,7 +7,12 @@ import * as S from './styles'
 const Headder = () => {
   return (
     <S.Headder>
-      <Container justify={'space-between'} isHeader={true} maxWidth={'1480px'}>
+      <Container
+        justify={'space-between'}
+        isHeader={true}
+        maxWidth={'1480px'}
+        hideMenu={false}
+      >
         <Logo />
         <MenuIcon />
       </Container>

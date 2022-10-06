@@ -5,6 +5,10 @@ import * as S from './styles'
 const GenerativeTemplate = () => {
   const router = useRouter()
 
+  const handleClick = (path: string) => {
+    router.push({ pathname: path }, path)
+  }
+
   return (
     <>
       <Container
@@ -16,9 +20,7 @@ const GenerativeTemplate = () => {
         <S.Section>
           <S.Title>generative art</S.Title>
 
-          <S.Article
-            onClick={() => router.push({ pathname: '/arts/one' }, '/arts/one')}
-          >
+          <S.Article onClick={() => handleClick('/arts/one')}>
             <S.Headline>One</S.Headline>
             <S.Headline>09/31/2022</S.Headline>
 
@@ -30,9 +32,7 @@ const GenerativeTemplate = () => {
             </S.Descr>
           </S.Article>
 
-          <S.Article
-            onClick={() => router.push({ pathname: '/arts/two' }, '/arts/two')}
-          >
+          <S.Article onClick={() => handleClick('/arts/two')}>
             <S.Headline>Two</S.Headline>
             <S.Headline>09/31/2022</S.Headline>
 

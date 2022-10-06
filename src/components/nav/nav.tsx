@@ -8,70 +8,52 @@ const Nav = () => {
   const { menu, setMenu } = useMenu()
   const router = useRouter()
   const [current, setCurrent] = useState('')
+  const [subpage, setSubpage] = useState('')
+
+  const pages = [
+    '',
+    'about',
+    'portfolio',
+    'stack',
+    'resume',
+    'articles',
+    'generative',
+    'contact',
+  ]
 
   const handleClick = (path: string) => {
     if (current !== path) {
+      router.push({ pathname: path }, path)
+      setMenu(false)
+    } else if (current === path && subpage === 'arts') {
       router.push({ pathname: path }, path)
       setMenu(false)
     }
   }
 
   useEffect(() => {
-    const arts = router.pathname.match('/arts/')
-    if (arts !== null) {
-      setCurrent('/generative')
-    } else {
+    const pageGroup = router.pathname.match('/.+/')
+
+    if (pageGroup === null) {
       setCurrent(router.pathname)
+      setSubpage('')
+    } else {
+      setSubpage(pageGroup![0].slice(1, -1))
     }
   }, [router.pathname])
 
   return (
     <S.Nav isVisible={menu}>
-      <S.Item isCurrent={current === '/'} onClick={() => handleClick('/')}>
-        Home
-      </S.Item>
-      <S.Item
-        isCurrent={current === '/about'}
-        onClick={() => handleClick('/about')}
-      >
-        About
-      </S.Item>
-      <S.Item
-        isCurrent={current === '/portfolio'}
-        onClick={() => handleClick('/portfolio')}
-      >
-        Portfolio
-      </S.Item>
-      <S.Item
-        isCurrent={current === '/stack'}
-        onClick={() => handleClick('/stack')}
-      >
-        Stack
-      </S.Item>
-      <S.Item
-        isCurrent={current === '/resume'}
-        onClick={() => handleClick('/resume')}
-      >
-        Resume
-      </S.Item>
-      <S.Item
-        isCurrent={current === '/articles'}
-        onClick={() => handleClick('/articles')}
-      >
-        Articles
-      </S.Item>
-      <S.Item
-        isCurrent={current === '/generative'}
-        onClick={() => handleClick('/generative')}
-      >
-        Generative Art
-      </S.Item>
-      <S.Item
-        isCurrent={current === '/contact'}
-        onClick={() => handleClick('/contact')}
-      >
-        Contact
-      </S.Item>
+      {pages.map((p: string) => (
+        <S.Item
+          key={p}
+          isSelected={current === '/' + p}
+          isClickable={current !== '/' + p || subpage === 'arts'}
+          onClick={() => handleClick('/' + p)}
+        >
+          {p === '' ? 'home' : p}
+        </S.Item>
+      ))}
     </S.Nav>
   )
 }

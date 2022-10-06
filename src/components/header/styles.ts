@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 export const Headder = styled.header`
   border-bottom: 1px solid #222;
-  height: 83px;
-  min-height: 83px;
+  height: 81px;
+  min-height: 81px;
 
   position: fixed;
   z-index: 99;
