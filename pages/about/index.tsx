@@ -8,7 +8,7 @@ const PlaygroundPage: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>About | pamplonas.dev</title>
+        <title>about | pamplonas.dev</title>
         <meta name="description" content="About Paulo Pamplona" />
         <link rel="icon" href="/favicon.png" />
       </Head>

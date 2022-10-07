@@ -17,34 +17,34 @@ const AboutTemplate = () => {
 
           <S.Article>
             <S.Descr>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Dignissimos aliquam fugiat magnam quod, ex earum est, doloribus
-              cupiditate ratione incidunt tenetur? Quod cum voluptatum
-              accusantium saepe fuga cupiditate incidunt excepturi?
+              I&apos;ve been learning web development oficially since September
+              2016, when I enrolled in a certification program in San Diego,
+              Californina, investing 720 hours during 2 semesters.
             </S.Descr>
             <S.Descr>
-              Blanditiis enim laborum optio dolor. Quae beatae natus nihil culpa
-              eligendi harum adipisci suscipit sint aut soluta ut minima non
-              quas, eveniet deleniti reiciendis repudiandae earum modi, maiores
-              qui optio!
+              Before this I spent 11 years in a very different field, working
+              mostly with Public Relations but ending close to a dev team, which
+              was supervised by me as their client when I worked in a big
+              Brazilian company today owned by Kantar Group.
             </S.Descr>
             <S.Descr>
-              Unde quibusdam reiciendis ullam explicabo quam ut sapiente
-              voluptate dolore commodi, iusto a cupiditate rem, praesentium enim
-              accusamus provident porro dicta nesciunt facilis sit molestiae?
-              Optio perferendis illum maxime suscipit?
+              The biggest challenge of starting a second career after such great
+              achievements gotten previously is to have a quiet high standard
+              and critical perspective of delivering services professionaly, in
+              other words how to get a good balance between a senior mind and
+              junior hard skills.
             </S.Descr>
             <S.Descr>
-              Nostrum quia a, officia, unde corrupti possimus mollitia quod
-              consectetur modi nam placeat dolorum saepe vero, assumenda
-              voluptate dolorem! Eligendi voluptatem neque, minus deleniti
-              officia aliquam temporibus aperiam molestiae fugiat.
+              Having more or less 2 years in paid positions as a web developer,
+              I&apos;m starting to feel more mature and way less insecure, not
+              afraid of diving in new technologies as my needs request - or just
+              for fun.
             </S.Descr>
             <S.Descr>
-              Facilis asperiores fugiat laudantium sunt saepe, nemo rerum iusto,
-              omnis maiores temporibus error autem nulla doloribus delectus eos
-              vitae perferendis nesciunt modi sapiente, fugit soluta quia sit.
-              Possimus, recusandae animi.
+              As a super committed professional, attentive to deadlines, it took
+              me a while to feel confident to accept challenges to do things
+              that I never did before. It doesn&apos;t scare me anymore, but
+              actually that&apos;s what motivates me most.
             </S.Descr>
           </S.Article>
         </S.Section>

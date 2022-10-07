@@ -43,12 +43,29 @@ export const Section = styled.section`
 `
 
 export const Anchor = styled.a`
-  color: #38c1ad;
   cursor: pointer;
-  line-break: anywhere;
   margin-top: 5px;
+  -webkit-text-decoration: underline;
   text-decoration: underline;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
+  width: 40px;
+  border: 1px solid #fff;
+  padding: 8px;
+  opacity: 0.5;
+  margin-right: 15px;
+  height: 40px;
+  transition: 0.2s ease all;
+
+  padding: 0;
+  height: 25px;
+  width: 25px;
+  border: none;
+
+  &:hover {
+    opacity: 1;
+  }
 `
 
 export const Descr = styled.p`
@@ -62,4 +79,10 @@ export const Descr = styled.p`
   margin: 5px 0 0px;
   text-align: left;
   width: 100%;
+`
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0;
 `
