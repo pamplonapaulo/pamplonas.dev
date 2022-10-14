@@ -37,7 +37,7 @@ const ResumeTemplate = () => {
             (React Avançado - Advanced React), which is being watched only to
             help real issues on my project. The project is the most complex job
             I ever had. It uses Strapi headless CMS to handle my backend needs.
-            I expect to finish the project by the end of May.
+            Project is done but client is not ready to relase it.
             <S.Anchor target="blank" href="https://gorilla.vercel.app/">
               gorilla.vercel.app
             </S.Anchor>

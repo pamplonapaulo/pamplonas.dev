@@ -20,7 +20,7 @@ const GenerativeTemplate = () => {
         <S.Section>
           <S.Title>generative art</S.Title>
 
-          <S.Article onClick={() => handleClick('/arts/three')}>
+          <S.Article onClick={() => handleClick('/arts/bubbles')}>
             <S.Headline>three: bubbles</S.Headline>
             <S.Headline>10/14/2022</S.Headline>
             <S.Descr>
@@ -29,8 +29,8 @@ const GenerativeTemplate = () => {
             </S.Descr>
           </S.Article>
 
-          <S.Article onClick={() => handleClick('/arts/two')}>
-            <S.Headline>two: artistic circle</S.Headline>
+          <S.Article onClick={() => handleClick('/arts/weird-circle')}>
+            <S.Headline>two: weird circle</S.Headline>
             <S.Headline>09/31/2022</S.Headline>
             <S.Descr>
               Second exercise with creative forms. Single color irregular
@@ -38,7 +38,7 @@ const GenerativeTemplate = () => {
             </S.Descr>
           </S.Article>
 
-          <S.Article onClick={() => handleClick('/arts/one')}>
+          <S.Article onClick={() => handleClick('/arts/micro-tiles')}>
             <S.Headline>one: micro tiles</S.Headline>
             <S.Headline>09/15/2022</S.Headline>
             <S.Descr>
