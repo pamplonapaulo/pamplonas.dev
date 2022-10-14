@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 
 export const Item = styled.p<{ isSelected: boolean; isClickable: boolean }>`
+  align-items: center;
   background: #000;
   box-shadow: 0px 1px 0 #222, 0px -1px 0 #222;
   color: ${(p) => (p.isSelected ? '#efd81f' : '#ccc')};
+  display: flex;
   font-family: 'NeutraText';
   font-size: 2rem;
-  line-height: 4;
+  height: 80px;
   margin: 0px;
   padding-left: 16px;
   text-align: left;
@@ -25,6 +27,10 @@ export const Item = styled.p<{ isSelected: boolean; isClickable: boolean }>`
       width: ${(p) => (!p.isClickable ? '100%' : '110%')};
       z-index: ${(p) => (!p.isClickable ? '1' : '2')};
     }
+  }
+
+  @media only screen and (max-height: 720px) {
+    height: calc(calc(100vh - 81px) / 8);
   }
 `
 
