@@ -1,5 +1,5 @@
 import Container from 'components/container'
-import Bubbles from 'arts/bubbles'
+import Connections from 'arts/connections'
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -9,17 +9,13 @@ const GenerativeArtPage: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>bubbles | pamplonas.dev</title>
-        <meta name="description" content="bubbles" />
+        <title>connections | pamplonas.dev</title>
+        <meta name="description" content="connections" />
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <Container
-        justify={'space-around'}
-        maxWidth={'calc(1480px)'}
-        // bgColor={'rgba(255,255,0,0.2)'}
-      >
-        <Bubbles />
+      <Container justify={'space-around'} maxWidth={'calc(1480px)'}>
+        <Connections />
       </Container>
     </div>
   )

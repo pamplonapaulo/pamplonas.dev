@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useCallback, useRef, useMemo } from 'react'
 import * as S from './styles'
-import Image from 'next/image'
-import { degToRad, randomRange } from 'utils/canvas'
+import { mapRange, randomRange } from 'utils/canvas'
 
-const Bubbles = () => {
+const Connections = () => {
   let canvas = useRef<HTMLCanvasElement | null>(null)
   let ctx = React.useRef<CanvasRenderingContext2D | null>(null)
   const [dimensions, setDimensions] = useState<{ w: number; h: number }>({
@@ -13,11 +12,10 @@ const Bubbles = () => {
 
   const [agents, setAgents] = useState<agent[]>([])
   const [moving, setMoving] = useState<boolean>(false)
-
-  const bubbles = 80
+  const [vertices, setVertices] = useState<number>(30)
 
   const colors = useMemo(
-    () => ['#3494DF', '#38C1AD', '#60079F', '#F32C43', '#f8f32b', '#1b1b1b'],
+    () => ['#3494DF', '#38C1AD', '#60079F', '#F32C43', '#f8f32b'],
     []
   )
 
@@ -25,6 +23,12 @@ const Bubbles = () => {
     const randomIndex = Math.floor(Math.random() * colors.length)
     const item = colors[randomIndex]
     return item
+  }
+
+  type vector = {
+    x: number
+    y: number
+    getDistance(v: vector): number
   }
 
   const Vector = useMemo(
@@ -36,14 +40,14 @@ const Bubbles = () => {
           this.x = x
           this.y = y
         }
+        getDistance(v: vector) {
+          const dx = this.x - v.x
+          const dy = this.y - v.y
+          return Math.sqrt(dx * dx + dy * dy)
+        }
       },
     []
   )
-
-  type vector = {
-    x: number
-    y: number
-  }
 
   const Agent = useMemo(
     () =>
@@ -55,7 +59,7 @@ const Bubbles = () => {
         constructor(x: number, y: number, color: string) {
           this.pos = new Vector(x, y)
           this.vel = new Vector(randomRange(-1, 1), randomRange(-1, 1))
-          this.radius = randomRange(2, 15)
+          this.radius = randomRange(4, 8)
           this.color = color
         }
         bounce(w: number, h: number) {
@@ -67,13 +71,16 @@ const Bubbles = () => {
           this.pos.y += this.vel.y
         }
         draw(context: CanvasRenderingContext2D) {
+          context.fillStyle = '#000'
           context.save()
           context.translate(this.pos.x, this.pos.y)
           context.lineWidth = 1
-          context.fillStyle = this.color
+
           context.beginPath()
           context.arc(0, 0, this.radius, 0, Math.PI * 2)
           context.fill()
+
+          context.strokeStyle = this.color
           context.stroke()
           context.restore()
         }
@@ -93,6 +100,26 @@ const Bubbles = () => {
   const renderFrame = useCallback(() => {
     ctx.current!.fillRect(0, 0, dimensions.w, dimensions.h)
 
+    for (let i = 0; i < agents.length; i++) {
+      const agent = agents[i]
+
+      for (let j = i + 1; j < agents.length; j++) {
+        const other = agents[j]
+        const dist = agent.pos.getDistance(other.pos)
+
+        if (dist > 200) continue
+
+        ctx.current!.lineWidth = mapRange(dist, 0, 200, 6, 1)
+
+        ctx.current!.beginPath()
+        ctx.current!.moveTo(agent.pos.x, agent.pos.y)
+        ctx.current!.lineTo(other.pos.x, other.pos.y)
+        ctx.current!.strokeStyle = '#1b1b1b'
+
+        ctx.current!.stroke()
+      }
+    }
+
     agents.forEach((a: agent) => {
       a.update()
       a.draw(ctx.current!)
@@ -102,11 +129,18 @@ const Bubbles = () => {
   }, [agents, dimensions, moving])
 
   useEffect(() => {
-    const w = window.innerWidth
-    const h = window.innerHeight - 80
+    const w = window.innerWidth > 1480 ? 1480 : window.innerWidth
+    const h =
+      window.innerWidth > 1024
+        ? window.innerHeight - 80
+        : window.innerHeight - 160
+
+    if (window.innerWidth > 1024) {
+      setVertices(75)
+    }
 
     const arr: agent[] = []
-    for (let i = 0; i < bubbles; i++) {
+    for (let i = 0; i < vertices; i++) {
       arr.push(
         new Agent(randomRange(0, w), randomRange(0, h), colorRandom(colors))
       )
@@ -116,7 +150,7 @@ const Bubbles = () => {
       w,
       h,
     })
-  }, [Agent, colors])
+  }, [Agent, colors, setVertices, vertices])
 
   useEffect(() => {
     if (canvas.current && dimensions.h > 0) {
@@ -141,4 +175,4 @@ const Bubbles = () => {
   return <S.Canvas ref={canvas} />
 }
 
-export default Bubbles
+export default Connections

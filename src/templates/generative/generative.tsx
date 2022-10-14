@@ -20,12 +20,21 @@ const GenerativeTemplate = () => {
         <S.Section>
           <S.Title>generative art</S.Title>
 
-          <S.Article onClick={() => handleClick('/arts/bubbles')}>
-            <S.Headline>three: bubbles</S.Headline>
+          <S.Article onClick={() => handleClick('/arts/connections')}>
+            <S.Headline>four: connections</S.Headline>
             <S.Headline>10/14/2022</S.Headline>
             <S.Descr>
+              Colored vertices getting connected and disconnected accordingly
+              with their distances between each other. Not an authorial code.
+            </S.Descr>
+          </S.Article>
+
+          <S.Article onClick={() => handleClick('/arts/bubbles')}>
+            <S.Headline>three: bubbles</S.Headline>
+            <S.Headline>10/13/2022</S.Headline>
+            <S.Descr>
               Third exercise using Canvas tag and first one using
-              requestAnimationFrame().
+              requestAnimationFrame(). Not an authorial code.
             </S.Descr>
           </S.Article>
 
@@ -34,7 +43,7 @@ const GenerativeTemplate = () => {
             <S.Headline>09/31/2022</S.Headline>
             <S.Descr>
               Second exercise with creative forms. Single color irregular
-              circumference.
+              circumference. Not an authorial code.
             </S.Descr>
           </S.Article>
 
@@ -43,7 +52,8 @@ const GenerativeTemplate = () => {
             <S.Headline>09/15/2022</S.Headline>
             <S.Descr>
               Very first generative forms with Canvas, displaying random little
-              colored squares. First leasson of creative coding classes.
+              colored squares. First leasson of creative coding classes. Not an
+              authorial code.
             </S.Descr>
           </S.Article>
         </S.Section>
