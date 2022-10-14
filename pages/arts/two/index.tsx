@@ -14,11 +14,7 @@ const GenerativeArtPage: NextPage = () => {
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <Container
-        justify={'space-around'}
-        maxWidth={'calc(1480px - 2rem)'}
-        // bgColor={'#efd81f'}
-      >
+      <Container justify={'space-around'} maxWidth={'calc(1480px - 2rem)'}>
         <ArtTwo />
       </Container>
     </div>

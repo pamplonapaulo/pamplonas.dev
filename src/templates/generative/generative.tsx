@@ -20,27 +20,30 @@ const GenerativeTemplate = () => {
         <S.Section>
           <S.Title>generative art</S.Title>
 
-          <S.Article onClick={() => handleClick('/arts/one')}>
-            <S.Headline>One</S.Headline>
-            <S.Headline>09/31/2022</S.Headline>
-
+          <S.Article onClick={() => handleClick('/arts/three')}>
+            <S.Headline>three: bubbles</S.Headline>
+            <S.Headline>10/14/2022</S.Headline>
             <S.Descr>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque
-              laborum voluptatum placeat impedit soluta quaerat exercitationem.
-              Totam, harum, temporibus suscipit voluptate ut quia consequatur
-              facere tempore ad eius laudantium illum.
+              Third exercise using Canvas tag and first one using
+              requestAnimationFrame().
             </S.Descr>
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/two')}>
-            <S.Headline>Two</S.Headline>
+            <S.Headline>two: artistic circle</S.Headline>
             <S.Headline>09/31/2022</S.Headline>
-
             <S.Descr>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque
-              laborum voluptatum placeat impedit soluta quaerat exercitationem.
-              Totam, harum, temporibus suscipit voluptate ut quia consequatur
-              facere tempore ad eius laudantium illum.
+              Second exercise with creative forms. Single color irregular
+              circumference.
+            </S.Descr>
+          </S.Article>
+
+          <S.Article onClick={() => handleClick('/arts/one')}>
+            <S.Headline>one: micro tiles</S.Headline>
+            <S.Headline>09/15/2022</S.Headline>
+            <S.Descr>
+              Very first generative forms with Canvas, displaying random little
+              colored squares. First leasson of creative coding classes.
             </S.Descr>
           </S.Article>
         </S.Section>

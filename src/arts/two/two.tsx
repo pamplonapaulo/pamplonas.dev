@@ -1,30 +1,17 @@
 import React, { useEffect, useCallback, useRef, useMemo } from 'react'
 import * as S from './styles'
+import Image from 'next/image'
+import { degToRad, randomRange } from 'utils/canvas'
 
-const Canvas = () => {
+const ArtTwo = () => {
   let canvasRef = useRef<HTMLCanvasElement | null>(null)
+  let buttonRef = useRef<HTMLAnchorElement | null>(null)
+
   let canvasCtxRef = React.useRef<CanvasRenderingContext2D | null>(null)
 
   const colors = useMemo(
-    () => ['#3494DF', '#38C1AD', '#60079F', '#F32C43', '#f8f32b'],
+    () => ['#3494DF', '#38C1AD', '#60079F', '#F32C43', '#f8f32b', '#1b1b1b'],
     []
-  )
-
-  const header = 83
-
-  const drawSquare = useCallback(
-    (
-      ctx: CanvasRenderingContext2D | null,
-      x: number,
-      y: number,
-      side: number
-    ) => {
-      ctx!.beginPath()
-      ctx!.fillStyle = colorRandom(colors)
-      ctx!.lineWidth = 1
-      ctx!.fillRect(x, y, side, side)
-    },
-    [colors]
   )
 
   const colorRandom = (colors: string[]) => {
@@ -33,114 +20,123 @@ const Canvas = () => {
     return item
   }
 
+  const randomColor = colorRandom(colors)
+
   useEffect(() => {
-    const width = window.innerWidth > 1480 ? 1480 : window.innerWidth
-    const calcHeight = window.innerHeight - header * 3
+    let width, height
 
-    const quantityX =
-      window.innerWidth >= 1480
-        ? 100
-        : window.innerWidth >= 1200
-        ? 90
-        : window.innerWidth >= 1024
-        ? 80
-        : window.innerWidth >= 768
-        ? 70
-        : window.innerWidth >= 480
-        ? 60
-        : 50
+    // const width = window.innerWidth - window.innerWidth * 0.05
+    // const height = width
+    // if (window.innerWidth > 786) {
+    //   width = 800
+    //   height = 800
+    // } else {
+    //   width = 500
+    //   height = 500
+    // }
 
-    const size =
-      window.innerWidth >= 1480
-        ? 0.3
-        : window.innerWidth >= 1200
-        ? 0.35
-        : window.innerWidth >= 1024
-        ? 0.4
-        : window.innerWidth >= 768
-        ? 0.45
-        : window.innerWidth >= 480
-        ? 0.5
-        : 0.7
-
-    const padding = 1 - size
-
-    const calcArea = width / quantityX
-    const calcMargin = calcArea * padding
-
-    const area = (width - calcMargin) / quantityX
-    const side = area * size
-    const margin = area * padding
-
-    const quantityY = Math.floor(calcHeight / (margin + side))
-    const height = quantityY * (margin + side)
+    if (window.innerWidth > window.innerHeight) {
+      height = window.innerHeight - window.innerHeight * 0.15
+      width = height
+    } else {
+      width = window.innerWidth
+      height = width
+    }
 
     if (canvasRef.current) {
-      canvasRef.current.height = height
-      canvasRef.current.width = width - margin
+      canvasRef.current.height = width
+      canvasRef.current.width = height
 
       canvasCtxRef.current = canvasRef.current.getContext('2d')
       let ctx = canvasCtxRef.current
-      // ctx!.fillStyle = 'hsl(0, 0%, 98%)'
-      // ctx!.fillRect(0, 0, width, height)
 
-      // Gradient foreground
-      // const fill = ctx!.createLinearGradient(0, 0, width, height)
-      // fill.addColorStop(0, 'black')
-      // fill.addColorStop(1, '#333')
+      ctx!.fillStyle = '#000'
+      ctx!.fillRect(0, 0, width, height)
 
-      // Fill rectangle
-      // ctx!.fillStyle = fill
-      // ctx!.fillRect(margin, margin, width - margin * 2, height - margin * 2)
+      // ctx!.fillStyle = 'blue'
 
-      for (let y = 0; y <= quantityY; y++) {
-        for (let x = 0; x <= quantityX; x++) {
-          const posX = x === 0 ? margin / 2 : (side + margin) * x + margin / 2
-          const posY = y === 0 ? margin / 2 : (side + margin) * y + margin / 2
+      const cx = width * 0.5
+      const cy = height * 0.5
+      const w = width * 0.01
+      const h = height * 0.1
 
-          if (Math.random() > 0.5) drawSquare(ctx, posX, posY, side)
-        }
+      let x, y
+
+      //const num = Math.random() * 40
+      const num = 40
+      const radius = width * 0.3
+
+      for (let i = 0; i < num; i++) {
+        const slice = degToRad(360 / num)
+        const angle = slice * i
+
+        //const color = colorRandom(colors)
+        //const color = '#1b1b1b'
+        //const color = colors[5]
+        const color = randomColor
+
+        ctx!.fillStyle = color
+
+        x = cx + radius * Math.sin(angle)
+        y = cy + radius * Math.cos(angle)
+
+        ctx!.save()
+        ctx!.translate(x, y)
+        ctx!.rotate(-angle)
+        ctx!.scale(randomRange(0.1, 2), randomRange(0.2, 0.5))
+
+        ctx!.beginPath()
+        //ctx!.rect(w * 0.5, h * 0.5, w, h)
+        ctx!.rect(-4, randomRange(0, -h * 0.5), w, h)
+        ctx!.fill()
+        ctx!.restore()
+
+        ctx!.save()
+        ctx!.translate(cx, cy)
+        ctx!.rotate(-angle)
+
+        ctx!.lineWidth = randomRange(5, 20)
+
+        ctx!.beginPath()
+        ctx!.arc(
+          0,
+          0,
+          radius * randomRange(0.7, 1.3),
+          slice * randomRange(1, -8),
+          slice * randomRange(0.6, 5)
+        )
+        ctx!.strokeStyle = color
+        ctx!.stroke()
+
+        ctx!.restore()
       }
-
-      /*
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = blue
-      ctx!.rect(10, 120, 100, 100)
-      ctx!.stroke()
-
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = purple
-      ctx!.rect(120, 120, 100, 100)
-      ctx!.stroke()
-
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = red
-      ctx!.rect(230, 120, 100, 100)
-      ctx!.stroke()
-
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = yellow
-      ctx!.rect(340, 120, 100, 100)
-      ctx!.stroke()
-
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = green
-      ctx!.rect(450, 120, 100, 100)
-      ctx!.stroke()
-      */
-
-      // ctx!.beginPath()
-      // ctx!.arc(300, 300, 100, 0, Math.PI * 2)
-      // ctx!.stroke()
     }
-  }, [drawSquare])
+  }, [randomColor])
 
-  return <S.Canvas ref={canvasRef} />
+  const downloadCanvas = () => {
+    if (buttonRef && canvasRef.current) {
+      const img = canvasRef.current.toDataURL('image/png')
+      const downloadImg = img.replace(
+        /^data:image\/[^;]/,
+        'data:application/octet-stream'
+      )
+      buttonRef.current!.href = downloadImg
+    }
+  }
+
+  return (
+    <>
+      <S.Canvas ref={canvasRef} />
+      <S.Anchor
+        ref={buttonRef}
+        download="canvas.png"
+        href="#"
+        onClick={downloadCanvas}
+      >
+        Download Canvas
+      </S.Anchor>
+    </>
+  )
 }
 
-export default Canvas
+export default ArtTwo
