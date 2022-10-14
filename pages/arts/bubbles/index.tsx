@@ -17,7 +17,7 @@ const GenerativeArtPage: NextPage = () => {
       <Container
         justify={'space-around'}
         maxWidth={'calc(1480px)'}
-        // bgColor={'green'}
+        // bgColor={'rgba(255,255,0,0.2)'}
       >
         <WeirdCircle />
       </Container>

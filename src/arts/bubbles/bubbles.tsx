@@ -102,8 +102,8 @@ const ArtThree = () => {
   }, [agents, dimensions, moving])
 
   useEffect(() => {
-    const w = window.innerWidth >= 1480 ? 1480 - 32 : window.innerWidth - 32
-    const h = window.innerHeight - 32 - 80
+    const w = window.innerWidth
+    const h = window.innerHeight - 80
 
     const arr: agent[] = []
     for (let i = 0; i < bubbles; i++) {

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Canvas = styled.canvas`
-  background: #fff;
+  background: 'transparent';
 `
 export const Anchor = styled.a`
   border: 1px solid #fff;
