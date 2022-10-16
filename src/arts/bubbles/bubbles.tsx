@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef, useMemo } from 'react'
 import * as S from './styles'
-import Image from 'next/image'
-import { degToRad, randomRange } from 'utils/canvas'
+import { randomRange } from 'utils/canvas'
 
 const Bubbles = () => {
   let canvas = useRef<HTMLCanvasElement | null>(null)

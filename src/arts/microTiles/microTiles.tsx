@@ -1,9 +1,12 @@
 import React, { useEffect, useCallback, useRef, useMemo } from 'react'
 import * as S from './styles'
 
-const ArtOne = () => {
+import { useCanvas } from 'contexts'
+
+const MicroTiles = () => {
   let canvasRef = useRef<HTMLCanvasElement | null>(null)
   let canvasCtxRef = React.useRef<CanvasRenderingContext2D | null>(null)
+  const { setCanvas } = useCanvas()
 
   const colors = useMemo(
     () => ['#3494DF', '#38C1AD', '#60079F', '#F32C43', '#f8f32b'],
@@ -81,17 +84,6 @@ const ArtOne = () => {
 
       canvasCtxRef.current = canvasRef.current.getContext('2d')
       let ctx = canvasCtxRef.current
-      // ctx!.fillStyle = 'hsl(0, 0%, 98%)'
-      // ctx!.fillRect(0, 0, width, height)
-
-      // Gradient foreground
-      // const fill = ctx!.createLinearGradient(0, 0, width, height)
-      // fill.addColorStop(0, 'black')
-      // fill.addColorStop(1, '#333')
-
-      // Fill rectangle
-      // ctx!.fillStyle = fill
-      // ctx!.fillRect(margin, margin, width - margin * 2, height - margin * 2)
 
       for (let y = 0; y <= quantityY; y++) {
         for (let x = 0; x <= quantityX; x++) {
@@ -101,46 +93,11 @@ const ArtOne = () => {
           if (Math.random() > 0.5) drawSquare(ctx, posX, posY, side)
         }
       }
-
-      /*
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = blue
-      ctx!.rect(10, 120, 100, 100)
-      ctx!.stroke()
-
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = purple
-      ctx!.rect(120, 120, 100, 100)
-      ctx!.stroke()
-
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = red
-      ctx!.rect(230, 120, 100, 100)
-      ctx!.stroke()
-
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = yellow
-      ctx!.rect(340, 120, 100, 100)
-      ctx!.stroke()
-
-      ctx!.beginPath()
-      ctx!.lineWidth = 1
-      ctx!.strokeStyle = green
-      ctx!.rect(450, 120, 100, 100)
-      ctx!.stroke()
-      */
-
-      // ctx!.beginPath()
-      // ctx!.arc(300, 300, 100, 0, Math.PI * 2)
-      // ctx!.stroke()
+      setCanvas(canvasRef.current)
     }
-  }, [drawSquare])
+  }, [drawSquare, setCanvas])
 
   return <S.Canvas ref={canvasRef} />
 }
 
-export default ArtOne
+export default MicroTiles

@@ -1,13 +1,12 @@
-import React, { useEffect, useCallback, useRef, useMemo } from 'react'
+import React, { useEffect, useRef, useMemo } from 'react'
 import * as S from './styles'
-import Image from 'next/image'
 import { degToRad, randomRange } from 'utils/canvas'
+import { useCanvas } from 'contexts'
 
-const ArtTwo = () => {
-  let canvasRef = useRef<HTMLCanvasElement | null>(null)
-  let buttonRef = useRef<HTMLAnchorElement | null>(null)
-
-  let canvasCtxRef = React.useRef<CanvasRenderingContext2D | null>(null)
+const WeirdCircle = () => {
+  let canvas = useRef<HTMLCanvasElement | null>(null)
+  let ctx = React.useRef<CanvasRenderingContext2D | null>(null)
+  const { setCanvas } = useCanvas()
 
   const colors = useMemo(
     () => ['#3494DF', '#38C1AD', '#60079F', '#F32C43', '#f8f32b', '#1b1b1b'],
@@ -25,16 +24,6 @@ const ArtTwo = () => {
   useEffect(() => {
     let width, height
 
-    // const width = window.innerWidth - window.innerWidth * 0.05
-    // const height = width
-    // if (window.innerWidth > 786) {
-    //   width = 800
-    //   height = 800
-    // } else {
-    //   width = 500
-    //   height = 500
-    // }
-
     if (window.innerWidth > window.innerHeight) {
       height = window.innerHeight - window.innerHeight * 0.15
       width = height
@@ -43,17 +32,14 @@ const ArtTwo = () => {
       height = width
     }
 
-    if (canvasRef.current) {
-      canvasRef.current.height = width
-      canvasRef.current.width = height
+    if (canvas.current) {
+      canvas.current.height = width
+      canvas.current.width = height
 
-      canvasCtxRef.current = canvasRef.current.getContext('2d')
-      let ctx = canvasCtxRef.current
+      ctx.current = canvas.current.getContext('2d')
 
-      ctx!.fillStyle = '#000'
-      ctx!.fillRect(0, 0, width, height)
-
-      // ctx!.fillStyle = 'blue'
+      ctx.current!.fillStyle = '#000'
+      ctx.current!.fillRect(0, 0, width, height)
 
       const cx = width * 0.5
       const cy = height * 0.5
@@ -70,73 +56,47 @@ const ArtTwo = () => {
         const slice = degToRad(360 / num)
         const angle = slice * i
 
-        //const color = colorRandom(colors)
-        //const color = '#1b1b1b'
-        //const color = colors[5]
         const color = randomColor
 
-        ctx!.fillStyle = color
+        ctx.current!.fillStyle = color
 
         x = cx + radius * Math.sin(angle)
         y = cy + radius * Math.cos(angle)
 
-        ctx!.save()
-        ctx!.translate(x, y)
-        ctx!.rotate(-angle)
-        ctx!.scale(randomRange(0.1, 2), randomRange(0.2, 0.5))
+        ctx.current!.save()
+        ctx.current!.translate(x, y)
+        ctx.current!.rotate(-angle)
+        ctx.current!.scale(randomRange(0.1, 2), randomRange(0.2, 0.5))
 
-        ctx!.beginPath()
-        //ctx!.rect(w * 0.5, h * 0.5, w, h)
-        ctx!.rect(-4, randomRange(0, -h * 0.5), w, h)
-        ctx!.fill()
-        ctx!.restore()
+        ctx.current!.beginPath()
+        ctx.current!.rect(-4, randomRange(0, -h * 0.5), w, h)
+        ctx.current!.fill()
+        ctx.current!.restore()
 
-        ctx!.save()
-        ctx!.translate(cx, cy)
-        ctx!.rotate(-angle)
+        ctx.current!.save()
+        ctx.current!.translate(cx, cy)
+        ctx.current!.rotate(-angle)
 
-        ctx!.lineWidth = randomRange(5, 20)
+        ctx.current!.lineWidth = randomRange(5, 20)
 
-        ctx!.beginPath()
-        ctx!.arc(
+        ctx.current!.beginPath()
+        ctx.current!.arc(
           0,
           0,
           radius * randomRange(0.7, 1.3),
           slice * randomRange(1, -8),
           slice * randomRange(0.6, 5)
         )
-        ctx!.strokeStyle = color
-        ctx!.stroke()
+        ctx.current!.strokeStyle = color
+        ctx.current!.stroke()
 
-        ctx!.restore()
+        ctx.current!.restore()
       }
+      setCanvas(canvas.current)
     }
-  }, [randomColor])
+  }, [randomColor, setCanvas])
 
-  const downloadCanvas = () => {
-    if (buttonRef && canvasRef.current) {
-      const img = canvasRef.current.toDataURL('image/png')
-      const downloadImg = img.replace(
-        /^data:image\/[^;]/,
-        'data:application/octet-stream'
-      )
-      buttonRef.current!.href = downloadImg
-    }
-  }
-
-  return (
-    <>
-      <S.Canvas ref={canvasRef} />
-      <S.Anchor
-        ref={buttonRef}
-        download="canvas.png"
-        href="#"
-        onClick={downloadCanvas}
-      >
-        Download Canvas
-      </S.Anchor>
-    </>
-  )
+  return <S.Canvas ref={canvas} />
 }
 
-export default ArtTwo
+export default WeirdCircle

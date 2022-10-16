@@ -5,7 +5,7 @@ import Footer from 'components/footer'
 
 import { useRouter } from 'next/router'
 
-import { MenuProvider } from 'contexts'
+import { MenuProvider, CanvasProvider } from 'contexts'
 
 import GlobalStyles from 'styles/global'
 import styled from 'styled-components'
@@ -24,12 +24,14 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <GlobalStyles />
       <MenuProvider>
-        <Header />
-        <Main ref={pageWrap}>
-          <Nav />
-          <Component {...pageProps} />
-        </Main>
-        <Footer />
+        <CanvasProvider>
+          <Header />
+          <Main ref={pageWrap}>
+            <Nav />
+            <Component {...pageProps} />
+          </Main>
+          <Footer />
+        </CanvasProvider>
       </MenuProvider>
     </>
   )

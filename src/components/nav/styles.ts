@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 
-export const Item = styled.p<{ isSelected: boolean; isClickable: boolean }>`
+export const Item = styled.a<{
+  downloadBtn?: boolean
+  isSelected: boolean
+  isClickable: boolean
+}>`
   align-items: center;
-  background: #000;
+  background: ${(p) => (p.downloadBtn ? '#222' : '#000')};
   box-shadow: 0px 1px 0 #222, 0px -1px 0 #222;
   color: ${(p) => (p.isSelected ? '#efd81f' : '#ccc')};
   display: flex;
