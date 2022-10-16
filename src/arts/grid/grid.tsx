@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import * as S from './styles'
-import random from 'canvas-sketch-util/random'
+import { createRandom } from 'utils/random'
 
 const Grid = () => {
   let canvas = useRef<HTMLCanvasElement | null>(null)
@@ -9,6 +9,8 @@ const Grid = () => {
     w: 0,
     h: 0,
   })
+
+  const { noise2D } = createRandom()
 
   const renderGrid = useCallback(() => {
     ctx.current!.fillRect(0, 0, dimensions.w, dimensions.h)
@@ -33,7 +35,7 @@ const Grid = () => {
       const w = cellW * 0.8
       const h = cellH * 0.8
 
-      const n = random.noise2D(x, y, 0.0002)
+      const n = noise2D(x, y, 0.0002)
       const angle = n * Math.PI
 
       ctx.current!.save()
