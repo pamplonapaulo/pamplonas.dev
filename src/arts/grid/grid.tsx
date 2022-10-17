@@ -24,8 +24,8 @@ const Grid = () => {
     ctx.current!.fillRect(0, 0, dimensions.w, dimensions.h)
     ctx.current!.fillStyle = 'yellow'
 
-    const cols = 10
-    const rows = 10
+    const cols = 10 * 2
+    const rows = 10 * 2
     const numCells = cols * rows
     const gridW = dimensions.w * 0.8
     const gridH = dimensions.h * 0.8
@@ -43,16 +43,18 @@ const Grid = () => {
       const w = cellW * 0.8
       const h = cellH * 0.8
 
-      const n = noise2D(x, y, 0.0002)
-      const angle = n * Math.PI
-
+      const n = noise2D(x, y, 0.001)
+      const angle = n * Math.PI * 0.2
+      const scale = ((n + 1) / 2) * 30
+      console.log(scale)
+      console.log(scale)
       ctx.current!.save()
       ctx.current!.translate(x, y)
       ctx.current!.translate(marginX, marginY)
       ctx.current!.translate(cellW * 0.5, cellH * 0.5)
       ctx.current!.rotate(angle)
 
-      ctx.current!.lineWidth = 4
+      ctx.current!.lineWidth = scale
 
       ctx.current!.beginPath()
       ctx.current!.moveTo(w * -0.5, 0)
