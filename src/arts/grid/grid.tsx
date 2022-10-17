@@ -1,6 +1,9 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react'
+import React, { useMemo, useEffect, useState, useCallback, useRef } from 'react'
 import * as S from './styles'
 import { createRandom } from 'utils/random'
+import { colorRandom } from 'utils/canvas'
+
+import { useCanvas } from 'contexts'
 
 const Grid = () => {
   let canvas = useRef<HTMLCanvasElement | null>(null)
@@ -9,8 +12,13 @@ const Grid = () => {
     w: 0,
     h: 0,
   })
-
+  const { setCanvas } = useCanvas()
   const { noise2D } = createRandom()
+
+  const colors = useMemo(
+    () => ['#3494DF', '#38C1AD', '#60079F', '#F32C43', '#f8f32b', '#1b1b1b'],
+    []
+  )
 
   const renderGrid = useCallback(() => {
     ctx.current!.fillRect(0, 0, dimensions.w, dimensions.h)
@@ -49,12 +57,13 @@ const Grid = () => {
       ctx.current!.beginPath()
       ctx.current!.moveTo(w * -0.5, 0)
       ctx.current!.lineTo(w * 0.5, 0)
-      ctx.current!.strokeStyle = 'red'
+      ctx.current!.strokeStyle = colorRandom(colors)
       ctx.current!.stroke()
 
       ctx.current!.restore()
+      setCanvas(canvas.current)
     }
-  }, [dimensions])
+  }, [dimensions, colors, noise2D])
 
   useEffect(() => {
     const w = window.innerWidth > 1480 ? 1480 : window.innerWidth
