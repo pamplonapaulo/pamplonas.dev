@@ -129,11 +129,8 @@ const Connections = () => {
   }, [agents, dimensions, moving])
 
   useEffect(() => {
-    const w = window.innerWidth > 1480 ? 1480 : window.innerWidth
-    const h =
-      window.innerWidth > 1024
-        ? window.innerHeight - 80
-        : window.innerHeight - 160
+    const w = window.innerWidth
+    const h = window.innerHeight - 80
 
     if (window.innerWidth > 1024) {
       setVertices(75)

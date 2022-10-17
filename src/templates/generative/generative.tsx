@@ -23,13 +23,15 @@ const GenerativeTemplate = () => {
           <S.Article onClick={() => handleClick('/arts/animated-noise')}>
             <S.Headline>six: animated noise</S.Headline>
             <S.Headline>10/16/2022</S.Headline>
-            <S.Descr>animated noise.</S.Descr>
+            <S.Descr>Animated noise grid.</S.Descr>
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/grid')}>
             <S.Headline>five: grid</S.Headline>
             <S.Headline>10/15/2022</S.Headline>
-            <S.Descr>Noise grid.</S.Descr>
+            <S.Descr>
+              Noise grid based on the amazing Perlin Noise&rsquo;s algorithm.
+            </S.Descr>
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/connections')}>
