@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const Canvas = styled.canvas`
   background: 'transparent';
-  margin-top: 80px;
 
   @media only screen and (min-width: 1024px) {
     margin-top: 0;
