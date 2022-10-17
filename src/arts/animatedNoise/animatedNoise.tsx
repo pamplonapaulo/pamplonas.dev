@@ -1,11 +1,10 @@
 import React, { useMemo, useEffect, useState, useCallback, useRef } from 'react'
 import * as S from './styles'
 import { createRandom } from 'utils/random'
-import { colorRandom } from 'utils/canvas'
-
+import { colorRandom, mapRange } from 'utils/canvas'
 import { useCanvas } from 'contexts'
 
-const Grid = () => {
+const AnimatedNoise = () => {
   let canvas = useRef<HTMLCanvasElement | null>(null)
   let ctx = React.useRef<CanvasRenderingContext2D | null>(null)
   const [dimensions, setDimensions] = useState<{ w: number; h: number }>({
@@ -14,15 +13,24 @@ const Grid = () => {
   })
   const { setCanvas } = useCanvas()
   const { noise2D } = createRandom()
+  const [moving, setMoving] = useState<boolean>(false)
+
+  let frameCounter = 0
 
   const colors = useMemo(
     () => ['#3494DF', '#38C1AD', '#60079F', '#F32C43', '#f8f32b', '#1b1b1b'],
     []
   )
 
+  const gridColor = colorRandom(colors)
+
+  setInterval(function () {
+    frameCounter++
+  }, 32)
+
   const renderGrid = useCallback(() => {
     ctx.current!.fillRect(0, 0, dimensions.w, dimensions.h)
-    ctx.current!.fillStyle = 'yellow'
+    ctx.current!.fillStyle = '#000'
 
     const cols = 10 * 2
     const rows = 10 * 2
@@ -43,11 +51,13 @@ const Grid = () => {
       const w = cellW * 0.8
       const h = cellH * 0.8
 
-      const n = noise2D(x, y, 0.001)
+      //const n = noise2D(x, y, 0.001)
+      const n = noise2D(x + frameCounter * 10, y, 0.001)
+
       const angle = n * Math.PI * 0.2
-      const scale = ((n + 1) / 2) * 30
-      console.log(scale)
-      console.log(scale)
+      // const scale = ((n + 1) / 2) * 30
+      const scale = mapRange(n, -1, 1, 1, 30)
+
       ctx.current!.save()
       ctx.current!.translate(x, y)
       ctx.current!.translate(marginX, marginY)
@@ -59,13 +69,16 @@ const Grid = () => {
       ctx.current!.beginPath()
       ctx.current!.moveTo(w * -0.5, 0)
       ctx.current!.lineTo(w * 0.5, 0)
-      ctx.current!.strokeStyle = colorRandom(colors)
+      // ctx.current!.strokeStyle = colorRandom(colors)
+      ctx.current!.strokeStyle = gridColor
+
       ctx.current!.stroke()
 
       ctx.current!.restore()
       setCanvas(canvas.current)
     }
-  }, [dimensions, colors, noise2D, setCanvas])
+    if (!moving) setMoving(true)
+  }, [dimensions, noise2D, setCanvas, moving, frameCounter, gridColor])
 
   useEffect(() => {
     const w = window.innerWidth > 1480 ? 1480 : window.innerWidth
@@ -85,12 +98,21 @@ const Grid = () => {
       canvas.current.height = dimensions.h
       canvas.current.width = dimensions.w
       ctx.current = canvas.current.getContext('2d')
-
-      renderGrid()
+      requestAnimationFrame(renderGrid)
     }
   }, [dimensions, renderGrid])
+
+  useEffect(() => {
+    const animate = () => {
+      if (moving) {
+        renderGrid()
+      }
+      requestAnimationFrame(animate)
+    }
+    animate()
+  }, [moving, renderGrid])
 
   return <S.Canvas ref={canvas} />
 }
 
-export default Grid
+export default AnimatedNoise
