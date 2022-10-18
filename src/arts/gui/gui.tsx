@@ -3,8 +3,9 @@ import * as S from './styles'
 import { createRandom } from 'utils/random'
 import { colorRandom, mapRange } from 'utils/canvas'
 import { useCanvas } from 'contexts'
+import { useTweaks } from 'use-tweaks'
 
-const AnimatedNoise = () => {
+const Gui = () => {
   let canvas = useRef<HTMLCanvasElement | null>(null)
   let ctx = React.useRef<CanvasRenderingContext2D | null>(null)
   const [dimensions, setDimensions] = useState<{ w: number; h: number }>({
@@ -14,26 +15,61 @@ const AnimatedNoise = () => {
   const { setCanvas } = useCanvas()
   const { noise2D } = createRandom()
   const [moving, setMoving] = useState<boolean>(false)
+  const [color, setColor] = useState('')
 
   let frameCounter = 0
 
-  const colors = useMemo(
-    () => ['#3494DF', '#38C1AD', '#60079F', '#F32C43', '#f8f32b', '#1b1b1b'],
-    []
-  )
+  type controller = {
+    cols: {
+      value: number
+      min: number
+      max: number
+      step: number
+    }
+    rows: {
+      value: number
+      min: number
+      max: number
+      step: number
+    }
+    scaleMin: {
+      value: number
+      min: number
+      max: number
+    }
+    scaleMax: {
+      value: number
+      min: number
+      max: number
+    }
+    freq: {
+      value: number
+      min: number
+      max: number
+    }
+    amp: {
+      value: number
+      min: number
+      max: number
+    }
+  }
 
-  const gridColor = colorRandom(colors)
-
-  setInterval(function () {
-    frameCounter++
-  }, 32)
+  const config = useTweaks<controller>('Controller', {
+    cols: { value: 20, min: 1, max: 40, step: 1 },
+    rows: { value: 20, min: 1, max: 40, step: 1 },
+    scaleMin: { value: 0.01, min: 0.01, max: 100 },
+    scaleMax: { value: 30, min: 0.01, max: 100 },
+    freq: { value: 0.001, min: -0.01, max: 0.01 },
+    amp: { value: 0.2, min: 0, max: 1 },
+  })
 
   const renderGrid = useCallback(() => {
     ctx.current!.fillRect(0, 0, dimensions.w, dimensions.h)
     ctx.current!.fillStyle = '#000'
 
-    const cols = 10 * 2
-    const rows = 10 * 2
+    const cols = config.rows
+    const rows = config.cols
+
     const numCells = cols * rows
     const gridW = dimensions.w * 0.8
     const gridH = dimensions.h * 0.8
@@ -51,12 +87,10 @@ const AnimatedNoise = () => {
       const w = cellW * 0.8
       const h = cellH * 0.8
 
-      //const n = noise2D(x, y, 0.001)
-      const n = noise2D(x + frameCounter * 10, y, 0.001)
-
-      const angle = n * Math.PI * 0.2
+      const n = noise2D(x + frameCounter * 10, y, config.freq)
+      const angle = n * Math.PI * config.amp
       // const scale = ((n + 1) / 2) * 30
-      const scale = mapRange(n, -1, 1, 0.01, 30)
+      const scale = mapRange(n, -1, 1, config.scaleMin, config.scaleMax)
 
       ctx.current!.save()
       ctx.current!.translate(x, y)
@@ -69,16 +103,14 @@ const AnimatedNoise = () => {
       ctx.current!.beginPath()
       ctx.current!.moveTo(w * -0.5, 0)
       ctx.current!.lineTo(w * 0.5, 0)
-      // ctx.current!.strokeStyle = colorRandom(colors)
-      ctx.current!.strokeStyle = gridColor
+      ctx.current!.strokeStyle = color
 
       ctx.current!.stroke()
-
       ctx.current!.restore()
       setCanvas(canvas.current)
     }
     if (!moving) setMoving(true)
-  }, [dimensions, noise2D, setCanvas, moving, frameCounter, gridColor])
+  }, [dimensions, noise2D, setCanvas, moving, frameCounter, color, config])
 
   useEffect(() => {
     const w = window.innerWidth > 1480 ? 1480 : window.innerWidth
@@ -112,7 +144,30 @@ const AnimatedNoise = () => {
     animate()
   }, [moving, renderGrid])
 
+  setInterval(function () {
+    frameCounter++
+    // console.log(frameCounter)
+  }, 24)
+
+  // useEffect(() => {
+  //   setInterval(function () {
+  //     frameCounter++
+  //     console.log(frameCounter)
+  //   }, 16)
+  // }, [frameCounter])
+
+  useEffect(() => {
+    const gridColor = colorRandom([
+      '#3494DF',
+      '#38C1AD',
+      '#60079F',
+      '#F32C43',
+      '#f8f32b',
+    ])
+    setColor(gridColor)
+  }, [])
+
   return <S.Canvas ref={canvas} />
 }
 
-export default AnimatedNoise
+export default Gui

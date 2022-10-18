@@ -20,12 +20,20 @@ const GenerativeTemplate = () => {
         <S.Section>
           <S.Title>generative art</S.Title>
 
+          <S.Article onClick={() => handleClick('/arts/gui')}>
+            <S.Headline>seven: Graphical User Interface(GUI)</S.Headline>
+            <S.Headline>10/18/2022</S.Headline>
+            <S.Descr>
+              Now including the Tweakpane, a compact pane library for
+              fine-tuning parameters and monitoring value changes.
+            </S.Descr>
+          </S.Article>
+
           <S.Article onClick={() => handleClick('/arts/animated-noise')}>
             <S.Headline>six: animated noise</S.Headline>
             <S.Headline>10/16/2022</S.Headline>
             <S.Descr>Animated noise grid.</S.Descr>
           </S.Article>
-
           <S.Article onClick={() => handleClick('/arts/grid')}>
             <S.Headline>five: grid</S.Headline>
             <S.Headline>10/15/2022</S.Headline>
@@ -33,7 +41,6 @@ const GenerativeTemplate = () => {
               Noise grid based on the amazing Perlin Noise&rsquo;s algorithm.
             </S.Descr>
           </S.Article>
-
           <S.Article onClick={() => handleClick('/arts/connections')}>
             <S.Headline>four: connections</S.Headline>
             <S.Headline>10/14/2022</S.Headline>
@@ -42,7 +49,6 @@ const GenerativeTemplate = () => {
               with their distances between each other. Not an authorial code.
             </S.Descr>
           </S.Article>
-
           <S.Article onClick={() => handleClick('/arts/bubbles')}>
             <S.Headline>three: bubbles</S.Headline>
             <S.Headline>10/13/2022</S.Headline>
@@ -51,7 +57,6 @@ const GenerativeTemplate = () => {
               requestAnimationFrame(). Not an authorial code.
             </S.Descr>
           </S.Article>
-
           <S.Article onClick={() => handleClick('/arts/weird-circle')}>
             <S.Headline>two: weird circle</S.Headline>
             <S.Headline>09/31/2022</S.Headline>
@@ -60,7 +65,6 @@ const GenerativeTemplate = () => {
               circumference. Not an authorial code.
             </S.Descr>
           </S.Article>
-
           <S.Article onClick={() => handleClick('/arts/micro-tiles')}>
             <S.Headline>one: micro tiles</S.Headline>
             <S.Headline>09/15/2022</S.Headline>

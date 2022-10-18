@@ -57,6 +57,10 @@ const GlobalStyles = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
+
+  .tp-dfwv {
+    padding-top: 81px!important;
+  }
 `
 
 export default GlobalStyles

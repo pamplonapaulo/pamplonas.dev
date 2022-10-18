@@ -1,0 +1,686 @@
+{
+  "controller_": {
+   "parent_": null,
+   "blade": {
+    "emitter": {
+     "observers_": {}
+    },
+    "valMap_": {
+     "positions": {
+      "emitter": {
+       "observers_": {
+        "change": [
+         {},
+         {},
+         {}
+        ]
+       }
+      },
+      "rawValue_": []
+     }
+    }
+   },
+   "view": {
+    "element": {},
+    "foldable_": {
+     "emitter": {
+      "observers_": {
+       "change": [
+        {}
+       ]
+      }
+     },
+     "valMap_": {
+      "completed": {
+       "emitter": {
+        "observers_": {
+         "change": [
+          {},
+          {}
+         ]
+        }
+       },
+       "value_": true
+      },
+      "expanded": {
+       "emitter": {
+        "observers_": {
+         "change": [
+          {},
+          {},
+          {}
+         ],
+         "beforechange": [
+          {}
+         ]
+        }
+       },
+       "value_": true
+      },
+      "expandedHeight": {
+       "emitter": {
+        "observers_": {
+         "change": [
+          {}
+         ]
+        }
+       },
+       "value_": null
+      },
+      "shouldFixHeight": {
+       "emitter": {
+        "observers_": {
+         "change": [
+          {}
+         ]
+        }
+       },
+       "value_": false
+      },
+      "temporaryExpanded": {
+       "emitter": {
+        "observers_": {
+         "change": [
+          {},
+          {}
+         ]
+        }
+       },
+       "value_": null
+      }
+     }
+    },
+    "buttonElement": {},
+    "titleElement": {},
+    "containerElement": {}
+   },
+   "viewProps": {
+    "emitter": {
+     "observers_": {}
+    },
+    "valMap_": {
+     "disabled": {
+      "emitter": {
+       "observers_": {
+        "change": [
+         {},
+         {},
+         {},
+         {}
+        ]
+       }
+      },
+      "value_": false
+     },
+     "disposed": {
+      "emitter": {
+       "observers_": {
+        "change": [
+         {},
+         {},
+         {},
+         {}
+        ]
+       }
+      },
+      "value_": false
+     },
+     "hidden": {
+      "emitter": {
+       "observers_": {
+        "change": [
+         {},
+         {},
+         {}
+        ]
+       }
+      },
+      "value_": false
+     }
+    }
+   },
+   "rackController": {
+    "parent_": null,
+    "blade": {
+     "emitter": {
+      "observers_": {}
+     },
+     "valMap_": {
+      "positions": {
+       "emitter": {
+        "observers_": {
+         "change": [
+          {},
+          {},
+          {}
+         ]
+        }
+       },
+       "rawValue_": []
+      }
+     }
+    },
+    "view": {
+     "element": {}
+    },
+    "viewProps": {
+     "emitter": {
+      "observers_": {}
+     },
+     "valMap_": {
+      "disabled": {
+       "emitter": {
+        "observers_": {
+         "change": [
+          {},
+          {},
+          {},
+          {}
+         ]
+        }
+       },
+       "value_": false
+      },
+      "disposed": {
+       "emitter": {
+        "observers_": {
+         "change": [
+          {},
+          {},
+          {},
+          {}
+         ]
+        }
+       },
+       "value_": false
+      },
+      "hidden": {
+       "emitter": {
+        "observers_": {
+         "change": [
+          {},
+          {},
+          {}
+         ]
+        }
+       },
+       "value_": false
+      }
+     }
+    },
+    "rack": {
+     "emitter": {
+      "observers_": {
+       "add": [
+        {},
+        {},
+        {}
+       ],
+       "remove": [
+        {},
+        {},
+        {}
+       ],
+       "inputchange": [
+        {}
+       ],
+       "monitorupdate": [
+        {}
+       ]
+      }
+     },
+     "blade_": null,
+     "bcSet_": {
+      "emitter": {
+       "observers_": {
+        "add": [
+         {}
+        ],
+        "remove": [
+         {}
+        ]
+       }
+      },
+      "items_": [],
+      "cache_": {}
+     }
+    }
+   },
+   "props": {
+    "emitter": {
+     "observers_": {}
+    },
+    "valMap_": {
+     "title": {
+      "emitter": {
+       "observers_": {
+        "change": [
+         {},
+         {},
+         {}
+        ]
+       }
+      }
+     }
+    }
+   },
+   "foldable": {
+    "emitter": {
+     "observers_": {
+      "change": [
+       {}
+      ]
+     }
+    },
+    "valMap_": {
+     "completed": {
+      "emitter": {
+       "observers_": {
+        "change": [
+         {},
+         {}
+        ]
+       }
+      },
+      "value_": true
+     },
+     "expanded": {
+      "emitter": {
+       "observers_": {
+        "change": [
+         {},
+         {},
+         {}
+        ],
+        "beforechange": [
+         {}
+        ]
+       }
+      },
+      "value_": true
+     },
+     "expandedHeight": {
+      "emitter": {
+       "observers_": {
+        "change": [
+         {}
+        ]
+       }
+      },
+      "value_": null
+     },
+     "shouldFixHeight": {
+      "emitter": {
+       "observers_": {
+        "change": [
+         {}
+        ]
+       }
+      },
+      "value_": false
+     },
+     "temporaryExpanded": {
+      "emitter": {
+       "observers_": {
+        "change": [
+         {},
+         {}
+        ]
+       }
+      },
+      "value_": null
+     }
+    }
+   }
+  },
+  "rackApi_": {
+   "controller_": {
+    "parent_": null,
+    "blade": {
+     "emitter": {
+      "observers_": {}
+     },
+     "valMap_": {
+      "positions": {
+       "emitter": {
+        "observers_": {
+         "change": [
+          {},
+          {},
+          {}
+         ]
+        }
+       },
+       "rawValue_": []
+      }
+     }
+    },
+    "view": {
+     "element": {}
+    },
+    "viewProps": {
+     "emitter": {
+      "observers_": {}
+     },
+     "valMap_": {
+      "disabled": {
+       "emitter": {
+        "observers_": {
+         "change": [
+          {},
+          {},
+          {},
+          {}
+         ]
+        }
+       },
+       "value_": false
+      },
+      "disposed": {
+       "emitter": {
+        "observers_": {
+         "change": [
+          {},
+          {},
+          {},
+          {}
+         ]
+        }
+       },
+       "value_": false
+      },
+      "hidden": {
+       "emitter": {
+        "observers_": {
+         "change": [
+          {},
+          {},
+          {}
+         ]
+        }
+       },
+       "value_": false
+      }
+     }
+    },
+    "rack": {
+     "emitter": {
+      "observers_": {
+       "add": [
+        {},
+        {},
+        {}
+       ],
+       "remove": [
+        {},
+        {},
+        {}
+       ],
+       "inputchange": [
+        {}
+       ],
+       "monitorupdate": [
+        {}
+       ]
+      }
+     },
+     "blade_": null,
+     "bcSet_": {
+      "emitter": {
+       "observers_": {
+        "add": [
+         {}
+        ],
+        "remove": [
+         {}
+        ]
+       }
+      },
+      "items_": [],
+      "cache_": {}
+     }
+    }
+   },
+   "emitter_": {
+    "observers_": {
+     "change": [
+      {}
+     ],
+     "update": [
+      {}
+     ]
+    }
+   },
+   "apiSet_": {
+    "emitter": {
+     "observers_": {}
+    },
+    "items_": [],
+    "cache_": {}
+   },
+   "pool_": {
+    "pluginsMap_": {
+     "blades": [
+      {
+       "id": "text",
+       "type": "blade"
+      },
+      {
+       "id": "tab",
+       "type": "blade"
+      },
+      {
+       "id": "list",
+       "type": "blade"
+      },
+      {
+       "id": "slider",
+       "type": "blade"
+      },
+      {
+       "id": "tab",
+       "type": "blade"
+      },
+      {
+       "id": "separator",
+       "type": "blade"
+      },
+      {
+       "id": "folder",
+       "type": "blade"
+      },
+      {
+       "id": "button",
+       "type": "blade"
+      }
+     ],
+     "inputs": [
+      {
+       "id": "input-bool",
+       "type": "input",
+       "binding": {}
+      },
+      {
+       "id": "input-color-number",
+       "type": "input",
+       "binding": {}
+      },
+      {
+       "id": "input-color-object",
+       "type": "input",
+       "binding": {}
+      },
+      {
+       "id": "input-color-string",
+       "type": "input",
+       "binding": {}
+      },
+      {
+       "id": "input-number",
+       "type": "input",
+       "binding": {}
+      },
+      {
+       "id": "input-string",
+       "type": "input",
+       "binding": {}
+      },
+      {
+       "id": "input-point4d",
+       "type": "input",
+       "binding": {}
+      },
+      {
+       "id": "input-point3d",
+       "type": "input",
+       "binding": {}
+      },
+      {
+       "id": "input-point2d",
+       "type": "input",
+       "binding": {}
+      }
+     ],
+     "monitors": [
+      {
+       "id": "monitor-number",
+       "type": "monitor",
+       "binding": {}
+      },
+      {
+       "id": "monitor-string",
+       "type": "monitor",
+       "binding": {}
+      },
+      {
+       "id": "monitor-bool",
+       "type": "monitor",
+       "binding": {}
+      }
+     ]
+    }
+   }
+  },
+  "emitter_": {
+   "observers_": {}
+  },
+  "pool_": {
+   "pluginsMap_": {
+    "blades": [
+     {
+      "id": "text",
+      "type": "blade"
+     },
+     {
+      "id": "tab",
+      "type": "blade"
+     },
+     {
+      "id": "list",
+      "type": "blade"
+     },
+     {
+      "id": "slider",
+      "type": "blade"
+     },
+     {
+      "id": "tab",
+      "type": "blade"
+     },
+     {
+      "id": "separator",
+      "type": "blade"
+     },
+     {
+      "id": "folder",
+      "type": "blade"
+     },
+     {
+      "id": "button",
+      "type": "blade"
+     }
+    ],
+    "inputs": [
+     {
+      "id": "input-bool",
+      "type": "input",
+      "binding": {}
+     },
+     {
+      "id": "input-color-number",
+      "type": "input",
+      "binding": {}
+     },
+     {
+      "id": "input-color-object",
+      "type": "input",
+      "binding": {}
+     },
+     {
+      "id": "input-color-string",
+      "type": "input",
+      "binding": {}
+     },
+     {
+      "id": "input-number",
+      "type": "input",
+      "binding": {}
+     },
+     {
+      "id": "input-string",
+      "type": "input",
+      "binding": {}
+     },
+     {
+      "id": "input-point4d",
+      "type": "input",
+      "binding": {}
+     },
+     {
+      "id": "input-point3d",
+      "type": "input",
+      "binding": {}
+     },
+     {
+      "id": "input-point2d",
+      "type": "input",
+      "binding": {}
+     }
+    ],
+    "monitors": [
+     {
+      "id": "monitor-number",
+      "type": "monitor",
+      "binding": {}
+     },
+     {
+      "id": "monitor-string",
+      "type": "monitor",
+      "binding": {}
+     },
+     {
+      "id": "monitor-bool",
+      "type": "monitor",
+      "binding": {}
+     }
+    ]
+   }
+  },
+  "containerElem_": {},
+  "doc_": {
+   "location": {
+    "ancestorOrigins": {},
+    "href": "http://localhost:3000/arts/gui",
+    "origin": "http://localhost:3000",
+    "protocol": "http:",
+    "host": "localhost:3000",
+    "hostname": "localhost",
+    "port": "3000",
+    "pathname": "/arts/gui",
+    "search": "",
+    "hash": ""
+   },
+   "_reactListeningc92s0dssnxm": true
+  },
+  "usesDefaultWrapper_": true
+ }
