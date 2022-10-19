@@ -64,6 +64,8 @@ const Gui = () => {
   })
 
   const renderGrid = useCallback(() => {
+    frameCounter++
+
     ctx.current!.fillRect(0, 0, dimensions.w, dimensions.h)
     ctx.current!.fillStyle = '#000'
 
@@ -143,18 +145,6 @@ const Gui = () => {
     }
     animate()
   }, [moving, renderGrid])
-
-  setInterval(function () {
-    frameCounter++
-    // console.log(frameCounter)
-  }, 24)
-
-  // useEffect(() => {
-  //   setInterval(function () {
-  //     frameCounter++
-  //     console.log(frameCounter)
-  //   }, 16)
-  // }, [frameCounter])
 
   useEffect(() => {
     const gridColor = colorRandom([
