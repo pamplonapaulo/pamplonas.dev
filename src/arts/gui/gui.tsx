@@ -5,55 +5,42 @@ import { colorRandom, mapRange } from 'utils/canvas'
 import { useCanvas } from 'contexts'
 import { useTweaks } from 'use-tweaks'
 
-const Gui = () => {
-  let canvas = useRef<HTMLCanvasElement | null>(null)
-  let ctx = React.useRef<CanvasRenderingContext2D | null>(null)
-  const [dimensions, setDimensions] = useState<{ w: number; h: number }>({
-    w: 0,
-    h: 0,
-  })
-  const { setCanvas } = useCanvas()
-  const { noise2D } = createRandom()
-  const [moving, setMoving] = useState<boolean>(false)
-  const [color, setColor] = useState('')
-
-  let frameCounter = 0
-
-  type controller = {
-    cols: {
-      value: number
-      min: number
-      max: number
-      step: number
-    }
-    rows: {
-      value: number
-      min: number
-      max: number
-      step: number
-    }
-    scaleMin: {
-      value: number
-      min: number
-      max: number
-    }
-    scaleMax: {
-      value: number
-      min: number
-      max: number
-    }
-    freq: {
-      value: number
-      min: number
-      max: number
-    }
-    amp: {
-      value: number
-      min: number
-      max: number
-    }
+type controller = {
+  cols: {
+    value: number
+    min: number
+    max: number
+    step: number
   }
+  rows: {
+    value: number
+    min: number
+    max: number
+    step: number
+  }
+  scaleMin: {
+    value: number
+    min: number
+    max: number
+  }
+  scaleMax: {
+    value: number
+    min: number
+    max: number
+  }
+  freq: {
+    value: number
+    min: number
+    max: number
+  }
+  amp: {
+    value: number
+    min: number
+    max: number
+  }
+}
 
+const Gui = () => {
   const config = useTweaks<controller>('Controller', {
     cols: { value: 20, min: 1, max: 40, step: 1 },
     rows: { value: 20, min: 1, max: 40, step: 1 },
@@ -63,56 +50,82 @@ const Gui = () => {
     amp: { value: 0.2, min: 0, max: 1 },
   })
 
-  const renderGrid = useCallback(() => {
-    frameCounter++
+  let canvas = useRef<HTMLCanvasElement | null>(null)
+  let ctx = React.useRef<CanvasRenderingContext2D | null>(null)
+  const [dimensions, setDimensions] = useState<{ w: number; h: number }>({
+    w: 0,
+    h: 0,
+  })
+  const { setCanvas } = useCanvas()
+  const { noise2D } = createRandom()
+  const [color, setColor] = useState('')
 
-    ctx.current!.fillRect(0, 0, dimensions.w, dimensions.h)
-    ctx.current!.fillStyle = '#000'
+  let anime = useRef<number>(0)
 
-    const cols = config.rows
-    const rows = config.cols
+  const renderGrid = useCallback(
+    (frameCounter: number = 1) => {
+      if (ctx.current === null) return
 
-    const numCells = cols * rows
-    const gridW = dimensions.w * 0.8
-    const gridH = dimensions.h * 0.8
-    const cellW = gridW / cols
-    const cellH = gridH / rows
-    const marginX = (dimensions.w - gridW) * 0.5
-    const marginY = (dimensions.h - gridH) * 0.5
+      console.log('renderGrid = useCallback: ', frameCounter)
+      ctx.current!.fillRect(0, 0, dimensions.w, dimensions.h)
+      ctx.current!.fillStyle = '#000'
 
-    for (let i = 0; i < numCells; i++) {
-      const col = i % cols
-      const row = Math.floor(i / cols)
+      const cols = config.rows
+      const rows = config.cols
 
-      const x = col * cellW
-      const y = row * cellH
-      const w = cellW * 0.8
-      const h = cellH * 0.8
+      const numCells = cols * rows
+      const gridW = dimensions.w * 0.8
+      const gridH = dimensions.h * 0.8
+      const cellW = gridW / cols
+      const cellH = gridH / rows
+      const marginX = (dimensions.w - gridW) * 0.5
+      const marginY = (dimensions.h - gridH) * 0.5
 
-      const n = noise2D(x + frameCounter * 10, y, config.freq)
-      const angle = n * Math.PI * config.amp
-      // const scale = ((n + 1) / 2) * 30
-      const scale = mapRange(n, -1, 1, config.scaleMin, config.scaleMax)
+      for (let i = 0; i < numCells; i++) {
+        const col = i % cols
+        const row = Math.floor(i / cols)
 
-      ctx.current!.save()
-      ctx.current!.translate(x, y)
-      ctx.current!.translate(marginX, marginY)
-      ctx.current!.translate(cellW * 0.5, cellH * 0.5)
-      ctx.current!.rotate(angle)
+        const x = col * cellW
+        const y = row * cellH
+        const w = cellW * 0.8
+        const h = cellH * 0.8
 
-      ctx.current!.lineWidth = scale
+        const n = noise2D(x + frameCounter * 3, y, config.freq)
+        const angle = n * Math.PI * config.amp
+        // const scale = ((n + 1) / 2) * 30
+        const scale = mapRange(n, -1, 1, config.scaleMin, config.scaleMax)
 
-      ctx.current!.beginPath()
-      ctx.current!.moveTo(w * -0.5, 0)
-      ctx.current!.lineTo(w * 0.5, 0)
-      ctx.current!.strokeStyle = color
+        ctx.current!.save()
+        ctx.current!.translate(x, y)
+        ctx.current!.translate(marginX, marginY)
+        ctx.current!.translate(cellW * 0.5, cellH * 0.5)
+        ctx.current!.rotate(angle)
 
-      ctx.current!.stroke()
-      ctx.current!.restore()
-      setCanvas(canvas.current)
-    }
-    if (!moving) setMoving(true)
-  }, [dimensions, noise2D, setCanvas, moving, frameCounter, color, config])
+        ctx.current!.lineWidth = scale
+
+        ctx.current!.beginPath()
+        ctx.current!.moveTo(w * -0.5, 0)
+        ctx.current!.lineTo(w * 0.5, 0)
+        ctx.current!.strokeStyle = color
+
+        ctx.current!.stroke()
+        ctx.current!.restore()
+        setCanvas(canvas.current)
+      }
+    },
+    [dimensions, noise2D, setCanvas, color, config]
+  )
+
+  useEffect(() => {
+    const gridColor = colorRandom([
+      '#3494DF',
+      '#38C1AD',
+      '#60079F',
+      '#F32C43',
+      '#f8f32b',
+    ])
+    setColor(gridColor)
+  }, [])
 
   useEffect(() => {
     const w = window.innerWidth > 1480 ? 1480 : window.innerWidth
@@ -127,35 +140,23 @@ const Gui = () => {
     })
   }, [])
 
+  const animate = useCallback(() => {
+    renderGrid(anime.current)
+    anime.current = requestAnimationFrame(animate)
+  }, [renderGrid])
+
+  useEffect(() => {
+    cancelAnimationFrame(anime.current)
+    anime.current = requestAnimationFrame(animate)
+  }, [config, animate])
+
   useEffect(() => {
     if (canvas.current && dimensions.h > 0) {
       canvas.current.height = dimensions.h
       canvas.current.width = dimensions.w
       ctx.current = canvas.current.getContext('2d')
-      requestAnimationFrame(renderGrid)
     }
   }, [dimensions, renderGrid])
-
-  useEffect(() => {
-    const animate = () => {
-      if (moving) {
-        renderGrid()
-      }
-      requestAnimationFrame(animate)
-    }
-    animate()
-  }, [moving, renderGrid])
-
-  useEffect(() => {
-    const gridColor = colorRandom([
-      '#3494DF',
-      '#38C1AD',
-      '#60079F',
-      '#F32C43',
-      '#f8f32b',
-    ])
-    setColor(gridColor)
-  }, [])
 
   return <S.Canvas ref={canvas} />
 }
