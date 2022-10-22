@@ -5,6 +5,8 @@ import { colorRandom, mapRange } from 'utils/canvas'
 import { useCanvas } from 'contexts'
 import { useTweaks } from 'use-tweaks'
 
+type CanvasLineCap = 'butt' | 'round' | 'square'
+
 type controller = {
   cols: {
     value: number
@@ -38,6 +40,22 @@ type controller = {
     min: number
     max: number
   }
+  frame: {
+    value: number
+    min: number
+    max: number
+  }
+  animate: {
+    value: boolean
+  }
+  lineCap: {
+    value: CanvasLineCap
+    options: {
+      butt: CanvasLineCap
+      round: CanvasLineCap
+      square: CanvasLineCap
+    }
+  }
 }
 
 const Gui = () => {
@@ -48,6 +66,16 @@ const Gui = () => {
     scaleMax: { value: 30, min: 0.01, max: 100 },
     freq: { value: 0.001, min: -0.01, max: 0.01 },
     amp: { value: 0.2, min: 0, max: 1 },
+    frame: { value: 0, min: 0, max: 999 },
+    animate: { value: true },
+    lineCap: {
+      value: 'butt',
+      options: {
+        butt: 'butt',
+        round: 'round',
+        square: 'square',
+      },
+    },
   })
 
   let canvas = useRef<HTMLCanvasElement | null>(null)
@@ -57,7 +85,7 @@ const Gui = () => {
     h: 0,
   })
   const { setCanvas } = useCanvas()
-  const { noise2D } = createRandom()
+  const { noise2D, noise3D } = createRandom()
   const [color, setColor] = useState('')
 
   let anime = useRef<number>(0)
@@ -66,7 +94,6 @@ const Gui = () => {
     (frameCounter: number = 1) => {
       if (ctx.current === null) return
 
-      console.log('renderGrid = useCallback: ', frameCounter)
       ctx.current!.fillRect(0, 0, dimensions.w, dimensions.h)
       ctx.current!.fillStyle = '#000'
 
@@ -90,7 +117,11 @@ const Gui = () => {
         const w = cellW * 0.8
         const h = cellH * 0.8
 
-        const n = noise2D(x + frameCounter * 3, y, config.freq)
+        const f = config.animate ? frameCounter : config.frame
+
+        //const n = noise2D(x + frameCounter * 3, y, config.freq)
+        const n = noise3D(x, y, f * 3, config.freq, config.amp)
+
         const angle = n * Math.PI * config.amp
         // const scale = ((n + 1) / 2) * 30
         const scale = mapRange(n, -1, 1, config.scaleMin, config.scaleMax)
@@ -102,6 +133,7 @@ const Gui = () => {
         ctx.current!.rotate(angle)
 
         ctx.current!.lineWidth = scale
+        ctx.current!.lineCap = config.lineCap
 
         ctx.current!.beginPath()
         ctx.current!.moveTo(w * -0.5, 0)
@@ -113,19 +145,8 @@ const Gui = () => {
         setCanvas(canvas.current)
       }
     },
-    [dimensions, noise2D, setCanvas, color, config]
+    [dimensions, noise3D, setCanvas, color, config]
   )
-
-  useEffect(() => {
-    const gridColor = colorRandom([
-      '#3494DF',
-      '#38C1AD',
-      '#60079F',
-      '#F32C43',
-      '#f8f32b',
-    ])
-    setColor(gridColor)
-  }, [])
 
   useEffect(() => {
     const w = window.innerWidth > 1480 ? 1480 : window.innerWidth
@@ -138,6 +159,15 @@ const Gui = () => {
       w,
       h,
     })
+
+    const gridColor = colorRandom([
+      '#3494DF',
+      '#38C1AD',
+      '#60079F',
+      '#F32C43',
+      '#f8f32b',
+    ])
+    setColor(gridColor)
   }, [])
 
   const animate = useCallback(() => {
