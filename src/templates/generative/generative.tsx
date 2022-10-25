@@ -20,9 +20,15 @@ const GenerativeTemplate = () => {
         <S.Section>
           <S.Title>generative art</S.Title>
 
+          <S.Article onClick={() => handleClick('/arts/lettering')}>
+            <S.Headline>eight: lettering</S.Headline>
+            <S.Headline>10/22/2022</S.Headline>
+            <S.Descr>Just started</S.Descr>
+          </S.Article>
+
           <S.Article onClick={() => handleClick('/arts/gui')}>
             <S.Headline>seven: Graphical User Interface(GUI)</S.Headline>
-            <S.Headline>10/18/2022</S.Headline>
+            <S.Headline>10/21/2022</S.Headline>
             <S.Descr>
               Now including the Tweakpane, a compact pane library for
               fine-tuning parameters and monitoring value changes.
