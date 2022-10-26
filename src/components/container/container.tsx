@@ -10,6 +10,7 @@ type Props = {
   isHeader?: boolean
   maxWidth?: string
   hideMenu?: boolean
+  noPadding?: boolean
 }
 
 const Container = ({
@@ -21,6 +22,7 @@ const Container = ({
   isHeader,
   maxWidth,
   hideMenu = true,
+  noPadding = false,
 }: Props) => {
   const { setMenu } = useMenu()
 
@@ -32,6 +34,7 @@ const Container = ({
       bgColor={bgColor}
       isHeader={isHeader}
       maxWidth={maxWidth}
+      noPadding={noPadding}
       onClick={hideMenu ? () => setMenu(false) : undefined}
     >
       {children}

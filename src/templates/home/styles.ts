@@ -59,7 +59,10 @@ export const Descr = styled.p`
   font-size: 2em;
   font-weight: normal;
   line-height: 1.5;
-  margin: 5px 0 25px;
-  text-align: left;
+  margin: 0;
+  opacity: 0.3;
+  position: absolute;
+  text-align: center;
+  transform: translateY(400%);
   width: 100%;
 `

@@ -1,21 +1,19 @@
 import Container from 'components/container'
+import Pamplona from 'arts/pamplona'
+
 import * as S from './styles'
 
 const HomeTemplate = () => {
   return (
     <>
       <Container
-        alignItems={'baseline'}
-        justify={'start'}
+        justify={'space-around'}
         direction={'column'}
         maxWidth={'1480px'}
+        noPadding={true}
       >
-        <S.Section>
-          <S.Article>
-            <S.Headline>paulo pamplona</S.Headline>
-            <S.Descr>full stack web development</S.Descr>
-          </S.Article>
-        </S.Section>
+        <Pamplona />
+        <S.Descr>full stack web development</S.Descr>
       </Container>
     </>
   )
