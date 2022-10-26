@@ -22,8 +22,13 @@ const GenerativeTemplate = () => {
 
           <S.Article onClick={() => handleClick('/arts/lettering')}>
             <S.Headline>eight: lettering</S.Headline>
-            <S.Headline>10/22/2022</S.Headline>
-            <S.Descr>Just started</S.Descr>
+            <S.Headline>10/24/2022</S.Headline>
+            <S.Descr>
+              This one was the last exercise from the Creative Coding Part 1
+              course. The funniest thing is this practice is that took me more
+              or less two days to realise I had a bug from a stupid typo on my
+              code. Yup, that damn missing comma! LOL
+            </S.Descr>
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/gui')}>
@@ -31,20 +36,33 @@ const GenerativeTemplate = () => {
             <S.Headline>10/21/2022</S.Headline>
             <S.Descr>
               Now including the Tweakpane, a compact pane library for
-              fine-tuning parameters and monitoring value changes.
+              fine-tuning parameters and monitoring value changes. And on this
+              one again the biggest challenge was to find out by myself how to
+              implement professor&lsquo;s approach in a react project. The
+              solution was including the useTweak() hook.
             </S.Descr>
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/animated-noise')}>
             <S.Headline>six: animated noise</S.Headline>
             <S.Headline>10/16/2022</S.Headline>
-            <S.Descr>Animated noise grid.</S.Descr>
+            <S.Descr>
+              Animated noise grid. Since I started this course, my biggest
+              challenge is being how to adapt professor&lsquo;s code into a
+              react project. On this exercise I had to review the life-cycle of
+              react, managing it&lsquo;s hooks with more attention to get the
+              proper control of the frames.
+            </S.Descr>
           </S.Article>
           <S.Article onClick={() => handleClick('/arts/grid')}>
             <S.Headline>five: grid</S.Headline>
             <S.Headline>10/15/2022</S.Headline>
             <S.Descr>
               Noise grid based on the amazing Perlin Noise&rsquo;s algorithm.
+              For this one the only issue faced during the class was how to
+              adapt Perlin Noise&lsquo;s library in a project with Typescript.
+              But thanks to VS Code features, that was actually surprisingly
+              easy.
             </S.Descr>
           </S.Article>
           <S.Article onClick={() => handleClick('/arts/connections')}>
