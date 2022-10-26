@@ -1,1 +1,1 @@
-export { default } from './lettering'
+export { default } from './pamplona'

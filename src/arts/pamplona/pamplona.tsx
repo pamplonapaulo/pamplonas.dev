@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import * as S from './styles'
 import { createRandom } from 'utils/random'
-import { useCanvas } from 'contexts'
 
 const Pamplona = () => {
   let canvas = useRef<HTMLCanvasElement | null>(null)
@@ -11,7 +10,6 @@ const Pamplona = () => {
     w: 0,
     h: 0,
   })
-  const { setCanvas } = useCanvas()
   const { pick } = createRandom()
 
   const getGlyph = useCallback(
@@ -112,9 +110,8 @@ const Pamplona = () => {
         ctx.current.fillText(glyph, 0, 0)
         ctx.current.restore()
       }
-      setCanvas(canvas.current)
     },
-    [dimensions, text, setCanvas, getGlyph]
+    [dimensions, text, getGlyph]
   )
 
   useEffect(() => {
