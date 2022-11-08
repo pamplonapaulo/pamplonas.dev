@@ -20,6 +20,20 @@ const GenerativeTemplate = () => {
         <S.Section>
           <S.Title>generative art</S.Title>
 
+          <S.Article onClick={() => handleClick('/arts/skewed-rectangles')}>
+            <S.Headline>nine: skewed rectangles</S.Headline>
+            <S.Headline>11/08/2022</S.Headline>
+            <S.Descr>
+              Let me tell you how much a shitty dev I&lsquo;m: I&lsquo;m that
+              kind of dev who studies cool things but don&lsquo;t feel confident
+              enough yet to share who is teaching me these things. So just
+              please be aware that none of these arts were concepted by me.
+              Yeah, I&lsquo;m not such code stealer neither, pretending to be a
+              badass. This is creative coding provided in paid classes.
+              I&lsquo;ll let you know once I code something original.
+            </S.Descr>
+          </S.Article>
+
           <S.Article onClick={() => handleClick('/arts/lettering')}>
             <S.Headline>eight: lettering</S.Headline>
             <S.Headline>10/24/2022</S.Headline>
