@@ -23,7 +23,16 @@ const GenerativeTemplate = () => {
           <S.Article onClick={() => handleClick('/arts/clipping-mask')}>
             <S.Headline>eleven: clipping mask</S.Headline>
             <S.Headline>11/10/2022</S.Headline>
-            <S.Descr>Clipping Mask.</S.Descr>
+            <S.Descr>
+              Now properly using the canvas-sketch-utils library, which I should
+              be doing since the beginning. I thought I would have to translate
+              everything to Typescript, but I was probably just importing the
+              lib in the wrong way. In this leasson I decided that by the end of
+              the course I&lsquo;m going to draw an Yin Yang - or the Tao if you
+              will - which was my very first tattoo, when I was just 19 years
+              old. So soon I will draw my first canvas, which sounds like a
+              feasible challenge at this point.
+            </S.Descr>
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/colorful-rectangles')}>
