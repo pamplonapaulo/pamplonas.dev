@@ -64,17 +64,11 @@ const SkewedRectangle = () => {
         w = randomRange(200, 600)
         h = randomRange(40, 200)
 
-        // x = dimensions.w * 0.5
-        // y = dimensions.h * 0.5
-        // w = dimensions.w * 0.6
-        // h = dimensions.h * 0.1
-
         ctx.current.save()
         ctx.current.translate(x, y)
 
         drawSkewdRect(ctx.current, color, w, h, degrees)
         ctx.current.stroke()
-
         ctx.current.restore()
       }
 
