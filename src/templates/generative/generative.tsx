@@ -20,6 +20,17 @@ const GenerativeTemplate = () => {
         <S.Section>
           <S.Title>generative art</S.Title>
 
+          <S.Article onClick={() => handleClick('/arts/colorful-rectangles')}>
+            <S.Headline>ten: colorful rectangles</S.Headline>
+            <S.Headline>11/09/2022</S.Headline>
+            <S.Descr>
+              Just the same from the previous exercise, but including some other
+              canvas context methods, such as shadow offset and global composite
+              operation, and playing around with colors from the super cool
+              library Riso Colors.
+            </S.Descr>
+          </S.Article>
+
           <S.Article onClick={() => handleClick('/arts/skewed-rectangles')}>
             <S.Headline>nine: skewed rectangles</S.Headline>
             <S.Headline>11/08/2022</S.Headline>
