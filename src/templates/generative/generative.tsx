@@ -20,6 +20,33 @@ const GenerativeTemplate = () => {
         <S.Section>
           <S.Title>generative art</S.Title>
 
+          <S.Article onClick={() => handleClick('/arts/heart')}>
+            <S.Headline>thirteen: heart</S.Headline>
+            <S.Headline>12/10/2022</S.Headline>
+            <S.Descr>
+              That&lsquo;s the last step before I draw the Tao. The curves on
+              the heart&lsquo;s shape are the missing step to get all
+              canvas&lsquo;s features I need. Now it&lsquo;s time to wrap it up,
+              and put everything together, and see how hard it takes.
+            </S.Descr>
+          </S.Article>
+
+          <S.Article onClick={() => handleClick('/arts/workers-party-start')}>
+            <S.Headline>twelve: red star</S.Headline>
+            <S.Headline>12/10/2022</S.Headline>
+            <S.Descr>
+              Short break on the classes to try something on my own. Then I
+              decieded to draw a red start following the exactly same approach
+              from the previous class. Drawing a start should&lsquo;t be much
+              harder than a triangle. But before I even give me a chance to find
+              out the logic by myself, the temptation of googling it hit be hard
+              and guess what? It&lsquo;s there. So it wasn&lsquo;t this time I
+              would find out the logic myself. Oh, and just for records: yup,
+              this sample is a celebration of the survival of the Brazilian
+              democracy.
+            </S.Descr>
+          </S.Article>
+
           <S.Article onClick={() => handleClick('/arts/clipping-mask')}>
             <S.Headline>eleven: clipping mask</S.Headline>
             <S.Headline>11/10/2022</S.Headline>
