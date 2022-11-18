@@ -20,6 +20,23 @@ const GenerativeTemplate = () => {
         <S.Section>
           <S.Title>generative art</S.Title>
 
+          <S.Article onClick={() => handleClick('/arts/tao')}>
+            <S.Headline>fourteen: tao</S.Headline>
+            <S.Headline>17/10/2022</S.Headline>
+            <S.Descr>
+              With this art, I finally started to challenge myself to achieve
+              something on my own, not just following some professor&lsquo;s
+              code. In fact, this one still has the main concept from the
+              previous but here I started to play with the bezier curve method,
+              which still misterious to me. I guess an Adobe Illustrator user
+              wouldn&lsquo;t have such a hard time to play with it. To achieve
+              this Yin / Yang, or Tao if you really like Taoism like me, I first
+              drew the symbol using arcs, then I spent some time with the bezier
+              curve, to get it over my arcs. This art still not responsive, but
+              should look ok in a desktop.
+            </S.Descr>
+          </S.Article>
+
           <S.Article onClick={() => handleClick('/arts/heart')}>
             <S.Headline>thirteen: heart</S.Headline>
             <S.Headline>12/10/2022</S.Headline>
@@ -27,7 +44,7 @@ const GenerativeTemplate = () => {
               That&lsquo;s the last step before I draw the Tao. The curves on
               the heart&lsquo;s shape are the missing step to get all
               canvas&lsquo;s features I need. Now it&lsquo;s time to wrap it up,
-              and put everything together, and see how hard it takes.
+              put everything together, and see how hard it takes.
             </S.Descr>
           </S.Article>
 
