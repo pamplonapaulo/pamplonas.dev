@@ -18,7 +18,7 @@ const Tao = () => {
   const [animateOn, setAnimateOn] = useState(false)
 
   let anime = useRef<number>(0)
-  const num = 75
+  const num = 550
 
   const yinRects = useMemo(() => [], [])
   const yangRects = useMemo(() => [], [])
@@ -71,27 +71,22 @@ const Tao = () => {
       strokeStyle: string,
       lineWidth: number,
       degrees: number,
-      rects: Rect[],
-      taoRadius: number,
-      isSeed: boolean
+      rects: Rect[]
     ) => {
       ctx.current.clip()
       rects.forEach((rect) => {
         const { x, y, w, h, fill, stroke, blend } = rect
 
+        // current.restore()
         current.save()
-
-        if (isSeed) {
-          current.translate(mask.current.x, mask.current.y)
-          current.translate(x - taoRadius, y - taoRadius)
-        } else {
-          current.translate(-mask.current.x, -mask.current.y)
-          current.translate(x, y)
-        }
-
+        current.translate(-mask.current.x, -mask.current.y)
+        //        current.translate(100, -100)
+        current.translate(x, y)
+        //current.translate(-50, -450)
         current.strokeStyle = stroke
         current.fillStyle = fill
         current.lineWidth = lineWidth
+
         current.globalCompositeOperation = blend
 
         drawSkewdRect(current, w, h, degrees)
@@ -104,9 +99,12 @@ const Tao = () => {
         current.shadowOffsetY = 20
 
         current.fill()
+
         current.shadowColor = null
         current.stroke()
+
         current.globalCompositeOperation = 'source-over'
+
         current.lineWidth = 5
         current.strokeStyle = strokeStyle
         current.stroke()
@@ -119,42 +117,16 @@ const Tao = () => {
   )
 
   const drawTao = useCallback(
-    (current: CanvasRenderingContext2D, color: string, taoRadius: number) => {
+    (current: CanvasRenderingContext2D, color: string) => {
       current.save()
       current.beginPath()
       current.strokeStyle = color
-      current.lineWidth = taoRadius / 60
+      current.lineWidth = 5
 
-      // current.moveTo(0, -300)
-      // current.bezierCurveTo(-400, -280, -400, 280, 0, 300)
-      // current.bezierCurveTo(-198, 295, -198, 5, 0, 0)
-      // current.bezierCurveTo(220, -25, 180, -290, 0, -300)
-
-      current.moveTo(0, -taoRadius)
-      current.bezierCurveTo(
-        -(taoRadius + taoRadius / 3),
-        -(taoRadius - taoRadius / 15),
-        -(taoRadius + taoRadius / 3),
-        taoRadius - taoRadius / 15,
-        0,
-        taoRadius
-      )
-      current.bezierCurveTo(
-        -(taoRadius - taoRadius / 3 - taoRadius / 150),
-        taoRadius - taoRadius / 60,
-        -(taoRadius - taoRadius / 3 - taoRadius / 150),
-        taoRadius / 60,
-        0,
-        0
-      )
-      current.bezierCurveTo(
-        2 * (taoRadius / 3) + taoRadius / 15,
-        -taoRadius / 12,
-        taoRadius * 0.6,
-        -(taoRadius - taoRadius / 30),
-        0,
-        -taoRadius
-      )
+      current.moveTo(0, -300)
+      current.bezierCurveTo(-400, -280, -400, 280, 0, 300)
+      current.bezierCurveTo(-198, 295, -198, 5, 0, 0)
+      current.bezierCurveTo(220, -25, 180, -290, 0, -300)
 
       current.closePath()
       current.stroke()
@@ -168,21 +140,21 @@ const Tao = () => {
       current: CanvasRenderingContext2D,
       w: number,
       h: number,
-      color: string,
-      taoRadius: number
+      color: string
     ) => {
       current.restore()
       current.save()
       current.beginPath()
+      current.strokeStyle = color
       current.lineWidth = 1
 
-      current.arc(w / 2, h / 2, taoRadius / 6, 0 * Math.PI, 1 * Math.PI)
-      current.arc(w / 2, h / 2, taoRadius / 6, 1 * Math.PI, 2 * Math.PI)
+      current.arc(w / 2, h / 2, 50, 0 * Math.PI, 1 * Math.PI)
+      current.arc(w / 2, h / 2, 50, 1 * Math.PI, 2 * Math.PI)
 
       current.fillStyle = color
       current.fill()
       //current.closePath()
-      //current.stroke()
+      current.stroke()
       //current.restore()
     },
     []
@@ -191,82 +163,44 @@ const Tao = () => {
     (frameCounter?: number) => {
       if (ctx.current === null) return
 
-      const taoRadius =
-        window.innerWidth >= 768 ? 300 : window.innerWidth >= 480 ? 225 : 150
-
       // draw yin:
       ctx.current.restore()
       ctx.current.save()
+      //ctx.current.translate(dimensions.w * 0.5, dimensions.h * 0.5)
       ctx.current.translate(mask.current.x, mask.current.y)
-      drawTao(ctx.current, '#62C2B1', taoRadius)
-      fillWithRectangles(
-        ctx.current,
-        '#62C2B1',
-        10,
-        -20,
-        yinRects,
-        taoRadius,
-        false
-      )
+      drawTao(ctx.current, '#62C2B1')
+      fillWithRectangles(ctx.current, '#62C2B1', 10, -20, yinRects)
 
       // draw yang:
       ctx.current.restore()
       ctx.current.save()
+      //ctx.current.translate(dimensions.w * 0.5, dimensions.h * 0.5)
       ctx.current.translate(mask.current.x, mask.current.y)
       ctx.current.rotate((180 * Math.PI) / 180)
-      drawTao(ctx.current, '#F9B411', taoRadius)
-      fillWithRectangles(
-        ctx.current,
-        '#F9B411',
-        10,
-        20,
-        yangRects,
-        taoRadius,
-        false
-      )
+      drawTao(ctx.current, '#F9B411')
+      fillWithRectangles(ctx.current, '#F9B411', 10, 20, yangRects)
 
       // draw yin seed
       ctx.current.restore()
       ctx.current.save()
-      ctx.current.translate(mask.current.x, mask.current.y)
-
-      drawSeed(
-        ctx.current,
-        dimensions.w,
-        dimensions.h + taoRadius,
-        '#62C2B1',
-        taoRadius
-      )
-      fillWithRectangles(
-        ctx.current,
-        'green',
-        10,
-        -20,
-        yinRects,
-        taoRadius,
-        true
-      )
+      ctx.current.translate(250, -700)
+      //ctx.current.translate(mask.current.x, mask.current.y)
+      drawSeed(ctx.current, dimensions.w, dimensions.h * 1.35, '#62C2B1')
+      //fillWithRectangles(ctx.current, 'green', 10, -20, yinRects)
 
       // draw yang seed
       ctx.current.restore()
       ctx.current.save()
-      ctx.current.translate(mask.current.x, mask.current.y)
-      drawSeed(
-        ctx.current,
-        dimensions.w,
-        dimensions.h - taoRadius,
-        '#F9B411',
-        taoRadius
-      )
-      fillWithRectangles(
-        ctx.current,
-        'yellow',
-        10,
-        20,
-        yangRects,
-        taoRadius,
-        true
-      )
+      ctx.current.translate(20, -190)
+      //ctx.current.translate(mask.current.x, mask.current.y)
+      drawSeed(ctx.current, dimensions.w, dimensions.h * 0.65, '#F9B411')
+      //fillWithRectangles(ctx.current, 'yellow', 10, 20, yangRects)
+
+      //ctx.current.save()
+      //ctx.current.translate(mask.current.x, mask.current.y)
+
+      //ctx.current.save()
+      //ctx.current.translate(mask.current.x, mask.current.y)
 
       setCanvas(canvas.current)
     },
@@ -342,11 +276,14 @@ const Tao = () => {
   )
 
   useEffect(() => {
-    const h =
-      window.innerHeight >= window.innerWidth
-        ? window.innerWidth
-        : window.innerHeight - 80
-    const w = h
+    // const h =
+    //   window.innerHeight >= window.innerWidth
+    //     ? window.innerWidth
+    //     : window.innerHeight - 80
+    //const w = h
+
+    const w = window.innerWidth
+    const h = window.innerHeight - 80
 
     setDimensions({
       w,
