@@ -20,6 +20,18 @@ const GenerativeTemplate = () => {
         <S.Section>
           <S.Title>generative art</S.Title>
 
+          <S.Article onClick={() => handleClick('/arts/quadratic-curve')}>
+            <S.Headline>fithteen: quadratic curve</S.Headline>
+            <S.Headline>23/10/2022</S.Headline>
+            <S.Descr>
+              This one is actually not any art. It&lsquo;s an exercise that took
+              me a while to overcome some bugs, most of them regarding frame
+              animaions. So this is here just as my archive. A good challenge
+              would be to redo the Tao, my previous art, now not using Bezier
+              CUrve, but this Quadratic Curve.
+            </S.Descr>
+          </S.Article>
+
           <S.Article onClick={() => handleClick('/arts/tao')}>
             <S.Headline>fourteen: tao</S.Headline>
             <S.Headline>17/10/2022</S.Headline>

@@ -1,12 +1,12 @@
 import React, { useMemo, useEffect, useState, useCallback, useRef } from 'react'
 import * as S from './styles'
-import { createRandom } from 'utils/random'
-import { colorRandom, mapRange } from 'utils/canvas'
 import { useCanvas } from 'contexts'
+import risoColors from 'riso-colors'
+import Color from 'canvas-sketch-util/color'
+import random from 'canvas-sketch-util/random'
+import math from 'canvas-sketch-util/math'
 
-// type CanvasLineCap = 'butt' | 'round' | 'square'
-
-const New = () => {
+const Blank = () => {
   let canvas = useRef<HTMLCanvasElement | null>(null)
   let ctx = useRef<CanvasRenderingContext2D | null>(null)
 
@@ -15,41 +15,28 @@ const New = () => {
     h: 0,
   })
   const { setCanvas } = useCanvas()
-  const [color, setColor] = useState('')
+  const [animateOn, setAnimateOn] = useState(false)
 
   let anime = useRef<number>(0)
+
+  type Mask = {
+    x: number
+    y: number
+  }
+
+  let mask = useRef<Mask | null>(null)
 
   const render = useCallback(
     (frameCounter?: number) => {
       if (ctx.current === null) return
 
-      // Clear canvas
-      ctx.current.clearRect(0, 0, dimensions.w, dimensions.h)
-
-      // Set color
-      ctx.current.fillStyle = color
-      ctx.current.strokeStyle = color
-
-      // Set line width
-      ctx.current.lineWidth = 10
-
-      // Wall
-      ctx.current.strokeRect(frameCounter + 75, 140, 150, 110)
-
-      // Door
-      ctx.current.fillRect(frameCounter + 130, 190, 40, 60)
-
-      // Roof
-      ctx.current.beginPath()
-      ctx.current.moveTo(frameCounter + 50, 140)
-      ctx.current.lineTo(frameCounter + 150, 60)
-      ctx.current.lineTo(frameCounter + 250, 140)
-      ctx.current.closePath()
-      ctx.current.stroke()
+      ctx.current.restore()
+      ctx.current.save()
+      ctx.current.translate(mask.current.x, mask.current.y)
 
       setCanvas(canvas.current)
     },
-    [color, setCanvas, dimensions]
+    [setCanvas]
   )
 
   useEffect(() => {
@@ -63,15 +50,6 @@ const New = () => {
       w,
       h,
     })
-
-    const color = colorRandom([
-      '#3494DF',
-      '#38C1AD',
-      '#60079F',
-      '#F32C43',
-      '#f8f32b',
-    ])
-    setColor(color)
   }, [])
 
   const animate = useCallback(() => {
@@ -80,20 +58,24 @@ const New = () => {
   }, [render])
 
   useEffect(() => {
-    cancelAnimationFrame(anime.current)
-    anime.current = requestAnimationFrame(animate)
-  }, [animate])
+    if (animateOn) {
+      cancelAnimationFrame(anime.current)
+      anime.current = requestAnimationFrame(animate)
+    }
+  }, [animate, animateOn])
 
   useEffect(() => {
     if (canvas.current && dimensions.h > 0) {
       canvas.current.height = dimensions.h
       canvas.current.width = dimensions.w
       ctx.current = canvas.current.getContext('2d')
-      render()
+
+      ctx.current.fillStyle = '#000'
+      ctx.current.fillRect(0, 0, dimensions.w, dimensions.h)
     }
   }, [dimensions, render])
 
   return <S.Canvas ref={canvas} />
 }
 
-export default New
+export default Blank

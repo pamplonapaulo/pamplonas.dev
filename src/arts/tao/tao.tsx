@@ -6,7 +6,7 @@ import Color from 'canvas-sketch-util/color'
 import random from 'canvas-sketch-util/random'
 import math from 'canvas-sketch-util/math'
 
-const Tao = () => {
+const QuaraticCurve = () => {
   let canvas = useRef<HTMLCanvasElement | null>(null)
   let ctx = useRef<CanvasRenderingContext2D | null>(null)
 
@@ -384,4 +384,4 @@ const Tao = () => {
   return <S.Canvas ref={canvas} />
 }
 
-export default Tao
+export default QuaraticCurve
