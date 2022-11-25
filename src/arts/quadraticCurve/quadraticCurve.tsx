@@ -76,6 +76,8 @@ const QuadraticCurve = () => {
 
   const onMouseMove = useCallback(
     (e: MouseEvent) => {
+      console.log('move')
+
       const x = (e.offsetX / canvas.current.offsetWidth) * canvas.current.width
       const y =
         (e.offsetY / canvas.current.offsetHeight) * canvas.current.height
@@ -91,16 +93,33 @@ const QuadraticCurve = () => {
 
   const onMouseUp = useCallback(
     (e: MouseEvent) => {
-      window.removeEventListener('mousemove', onMouseMove)
-      window.removeEventListener('mouseup', onMouseUp)
+      console.log('up')
+
+      if (window.innerWidth >= 1024) {
+        window.removeEventListener('mousemove', onMouseMove)
+        window.removeEventListener('mouseup', onMouseUp)
+      } else {
+        console.log('remove touch end')
+
+        window.removeEventListener('touchmove', onMouseMove)
+        window.removeEventListener('touchend', onMouseUp)
+      }
     },
     [onMouseMove]
   )
 
   const onMouseDown = useCallback(
     (e: MouseEvent) => {
-      window.addEventListener('mousemove', onMouseMove)
-      window.addEventListener('mouseup', onMouseUp)
+      console.log('down')
+      if (window.innerWidth >= 1024) {
+        window.addEventListener('mousemove', onMouseMove)
+        window.addEventListener('mouseup', onMouseUp)
+      } else {
+        console.log('add touch end')
+
+        window.addEventListener('touchmove', onMouseMove)
+        window.addEventListener('touchend', onMouseMove)
+      }
 
       const x = (e.offsetX / canvas.current.offsetWidth) * canvas.current.width
       const y =
@@ -138,7 +157,11 @@ const QuadraticCurve = () => {
         p.draw(ctx.current)
       })
 
-      canvas.current?.addEventListener('mousedown', onMouseDown)
+      if (window.innerWidth >= 1024) {
+        canvas.current?.addEventListener('mousedown', onMouseDown)
+      } else {
+        canvas.current?.addEventListener('touchstart', onMouseDown)
+      }
 
       setCanvas(canvas.current)
     },
@@ -184,9 +207,12 @@ const QuadraticCurve = () => {
         y: dimensions.h * 0.5,
       }
 
-      points.push(new Point({ x: 200, y: 540 }))
-      points.push(new Point({ x: 400, y: 300, control: true }))
-      points.push(new Point({ x: 800, y: 540 }))
+      const y = mask.current.y
+      const x = dimensions.w
+
+      points.push(new Point({ x: x * 0.25, y }))
+      points.push(new Point({ x: x * 0.5, y: y - 150, control: true }))
+      points.push(new Point({ x: x * 0.75, y }))
 
       render()
     }
