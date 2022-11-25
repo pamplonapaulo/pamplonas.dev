@@ -67,17 +67,26 @@ const QuadraticCurve = () => {
           const dx = this.x - x
           const dy = this.y - y
           const dd = Math.sqrt(dx * dx + dy * dy)
-
           return dd < 20
         }
       },
     []
   )
 
+  const getCoordinatesOnMobile = (e: any) => {
+    const bcr = e.target.getBoundingClientRect()
+
+    const offsetX = e.targetTouches[0].clientX - bcr.x
+    const offsetY = e.targetTouches[0].clientY - bcr.y
+
+    const x = (offsetX / canvas.current.offsetWidth) * canvas.current.width
+    const y = (offsetY / canvas.current.offsetHeight) * canvas.current.height
+
+    return [x, y]
+  }
+
   const onMouseMove = useCallback(
     (e: MouseEvent) => {
-      console.log('move')
-
       const x = (e.offsetX / canvas.current.offsetWidth) * canvas.current.width
       const y =
         (e.offsetY / canvas.current.offsetHeight) * canvas.current.height
@@ -91,35 +100,56 @@ const QuadraticCurve = () => {
     [points]
   )
 
+  const onTouchMove = useCallback(
+    (e: TouchEvent | React.TouchEvent<HTMLElement>) => {
+      const [x, y] = getCoordinatesOnMobile(e)
+      points.forEach((p: point) => {
+        if (p.isDragging) {
+          document.documentElement.style.overflow = 'hidden'
+          p.x = x
+          p.y = y
+        }
+      })
+    },
+    [points]
+  )
+
   const onMouseUp = useCallback(
     (e: MouseEvent) => {
-      console.log('up')
-
-      if (window.innerWidth >= 1024) {
-        window.removeEventListener('mousemove', onMouseMove)
-        window.removeEventListener('mouseup', onMouseUp)
-      } else {
-        console.log('remove touch end')
-
-        window.removeEventListener('touchmove', onMouseMove)
-        window.removeEventListener('touchend', onMouseUp)
-      }
+      document.documentElement.style.overflow = ''
+      window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('mouseup', onMouseUp)
     },
     [onMouseMove]
   )
 
+  const onTouchEnd = useCallback(
+    (e: TouchEvent) => {
+      document.documentElement.style.overflow = ''
+      window.removeEventListener('touchmove', onTouchMove)
+      window.removeEventListener('touchend', onTouchEnd)
+    },
+    [onTouchMove]
+  )
+
+  const onTouchStart = useCallback(
+    (e: TouchEvent) => {
+      window.addEventListener('touchmove', onTouchMove)
+      window.addEventListener('touchend', onTouchEnd)
+
+      const [x, y] = getCoordinatesOnMobile(e)
+
+      points.forEach((p: point) => {
+        p.isDragging = p.hitTest(x, y)
+      })
+    },
+    [onTouchEnd, onTouchMove, points]
+  )
+
   const onMouseDown = useCallback(
     (e: MouseEvent) => {
-      console.log('down')
-      if (window.innerWidth >= 1024) {
-        window.addEventListener('mousemove', onMouseMove)
-        window.addEventListener('mouseup', onMouseUp)
-      } else {
-        console.log('add touch end')
-
-        window.addEventListener('touchmove', onMouseMove)
-        window.addEventListener('touchend', onMouseMove)
-      }
+      window.addEventListener('mousemove', onMouseMove)
+      window.addEventListener('mouseup', onMouseUp)
 
       const x = (e.offsetX / canvas.current.offsetWidth) * canvas.current.width
       const y =
@@ -160,20 +190,23 @@ const QuadraticCurve = () => {
       if (window.innerWidth >= 1024) {
         canvas.current?.addEventListener('mousedown', onMouseDown)
       } else {
-        canvas.current?.addEventListener('touchstart', onMouseDown)
+        canvas.current?.addEventListener('touchstart', onTouchStart)
       }
 
       setCanvas(canvas.current)
     },
-    [setCanvas, onMouseDown, dimensions, points]
+    [setCanvas, onMouseDown, onTouchStart, dimensions, points]
   )
 
   useEffect(() => {
-    const h =
-      window.innerHeight >= window.innerWidth
-        ? window.innerWidth
-        : window.innerHeight - 80
-    const w = h
+    // const h =
+    //   window.innerHeight >= window.innerWidth
+    //     ? window.innerWidth
+    //     : window.innerHeight - 80
+    // const w = h
+
+    const h = window.innerHeight - 80
+    const w = window.innerWidth
 
     setDimensions({
       w,
