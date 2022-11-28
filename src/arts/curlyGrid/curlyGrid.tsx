@@ -17,9 +17,9 @@ const CurlyGrid = () => {
     h: 0,
   })
   const { setCanvas } = useCanvas()
-  const [animateOn, setAnimateOn] = useState(false)
+  const [animateOn] = useState(true)
 
-  type GridType = {
+  type grid = {
     cols: number
     rows: number
     numCells: number
@@ -59,9 +59,12 @@ const CurlyGrid = () => {
     [dimensions]
   )
 
-  let grid = useRef<GridType | null>(null)
+  let grd = useRef<grid | null>(null)
 
   let anime = useRef<number>(0)
+
+  const freq = 0.002
+  const amp = 90
 
   type Mask = {
     x: number
@@ -73,6 +76,8 @@ const CurlyGrid = () => {
   type point = {
     x: number
     y: number
+    ix: number
+    iy: number
     lineWidth: number
     color: string
     draw: (ctx: CanvasRenderingContext2D) => void
@@ -85,12 +90,16 @@ const CurlyGrid = () => {
       class Point {
         x: number
         y: number
+        ix: number
+        iy: number
         lineWidth: number
         color: string
 
         constructor({ x, y, lineWidth, color }) {
           this.x = x
           this.y = y
+          this.ix = x
+          this.iy = y
           this.lineWidth = lineWidth
           this.color = color
         }
@@ -112,31 +121,36 @@ const CurlyGrid = () => {
   )
 
   const render = useCallback(
-    (frameCounter?: number) => {
+    (frameCounter = 0) => {
       if (ctx.current === null) return
 
       ctx.current.fillStyle = '#000'
-      // ctx.current.fillStyle = '#5d4bae'
       ctx.current.fillRect(0, 0, dimensions.w, dimensions.h)
 
       ctx.current.save()
-      ctx.current.translate(grid.current.marginX, grid.current.marginY)
+      ctx.current.translate(grd.current.marginX, grd.current.marginY)
 
       ctx.current.translate(
-        grid.current.cellWidth * 0.5,
-        grid.current.cellHeight * 0.5
+        grd.current.cellWidth * 0.5,
+        grd.current.cellHeight * 0.5
       )
 
       ctx.current.strokeStyle = '#efd81f'
       ctx.current.lineWidth = 1
 
-      let lastX, lastY
+      points.forEach((p) => {
+        const n = random.noise2D(p.ix + frameCounter, p.iy, freq, amp)
+        p.x = p.ix + n
+        p.y = p.iy + n
+      })
 
-      // draw curves
-      for (let r = 0; r < grid.current.rows; r++) {
-        for (let c = 0; c < grid.current.cols - 1; c++) {
-          const curr = points[r * grid.current.cols + c + 0]
-          const next = points[r * grid.current.cols + c + 1]
+      let lastX: number, lastY: number
+
+      // draw curly lines
+      for (let r = 0; r < grd.current.rows; r++) {
+        for (let c = 0; c < grd.current.cols - 1; c++) {
+          const curr = points[r * grd.current.cols + c + 0]
+          const next = points[r * grd.current.cols + c + 1]
 
           // const mx = curr.x + (next.x - curr.x) * 0.5
           // const my = curr.y + (next.y - curr.y) * 0.5
@@ -157,12 +171,8 @@ const CurlyGrid = () => {
 
           ctx.current.stroke()
 
-          // lastX = mx
-          // lastY = my
-          // lastX = mx + 250
-          // lastY = my
-          lastX = mx - (c / grid.current.cols) * 250
-          lastY = my - (r / grid.current.rows) * 250
+          lastX = mx - (c / grd.current.cols) * 250
+          lastY = my - (r / grd.current.rows) * 250
         }
       }
 
@@ -170,7 +180,7 @@ const CurlyGrid = () => {
 
       setCanvas(canvas.current)
     },
-    [dimensions, setCanvas, grid, points]
+    [dimensions, setCanvas, grd, points]
   )
 
   useEffect(() => {
@@ -209,24 +219,23 @@ const CurlyGrid = () => {
         y: dimensions.h * 0.5,
       }
 
-      grid.current = new Grid({ cols: 72, rows: 4 })
+      console.log(dimensions.w)
 
-      const freq = 0.002
-      const amp = 90
+      if (dimensions.w <= 500) grd.current = new Grid({ cols: 20, rows: 2 })
+      if (dimensions.w > 500 && dimensions.w <= 1024)
+        grd.current = new Grid({ cols: 35, rows: 3 })
+      if (dimensions.w > 1024) grd.current = new Grid({ cols: 74, rows: 4 })
 
       const colors = colormap({
         colormap: 'spring',
         nshades: amp,
       })
 
-      for (let i = 0; i < grid.current.numCells; i++) {
-        let x = (i % grid.current.cols) * grid.current.cellWidth
-        let y = Math.floor(i / grid.current.cols) * grid.current.cellHeight
+      for (let i = 0; i < grd.current.numCells; i++) {
+        let x = (i % grd.current.cols) * grd.current.cellWidth
+        let y = Math.floor(i / grd.current.cols) * grd.current.cellHeight
 
         const n = random.noise2D(x, y, freq, amp)
-
-        x += n
-        y += n
 
         const color = colors[Math.floor(math.mapRange(n, -amp, amp, 0, amp))]
         const lineWidth = math.mapRange(n, -amp, amp, 0, 5)
