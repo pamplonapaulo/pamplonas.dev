@@ -20,6 +20,12 @@ const GenerativeTemplate = () => {
         <S.Section>
           <S.Title>generative art</S.Title>
 
+          <S.Article onClick={() => handleClick('/arts/curly-grid')}>
+            <S.Headline>sixteen: curly grid</S.Headline>
+            <S.Headline>27/10/2022</S.Headline>
+            <S.Descr>Moving on on the next leassons.</S.Descr>
+          </S.Article>
+
           <S.Article onClick={() => handleClick('/arts/quadratic-curve')}>
             <S.Headline>fithteen: quadratic curve</S.Headline>
             <S.Headline>23/10/2022</S.Headline>
