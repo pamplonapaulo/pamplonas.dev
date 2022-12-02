@@ -20,15 +20,29 @@ const GenerativeTemplate = () => {
         <S.Section>
           <S.Title>generative art</S.Title>
 
+          <S.Article onClick={() => handleClick('/arts/image-particles')}>
+            <S.Headline>19: particles of an image</S.Headline>
+            <S.Headline>12/1/2022</S.Headline>
+            <S.Descr>Last class, celebrating the World Cup.</S.Descr>
+          </S.Article>
+
+          <S.Article onClick={() => handleClick('/arts/particles')}>
+            <S.Headline>18: particles</S.Headline>
+            <S.Headline>11/30/2022</S.Headline>
+            <S.Descr>
+              Particles reacting to the mouse move if click on hold.
+            </S.Descr>
+          </S.Article>
+
           <S.Article onClick={() => handleClick('/arts/curly-grid')}>
-            <S.Headline>sixteen: curly grid</S.Headline>
-            <S.Headline>27/10/2022</S.Headline>
+            <S.Headline>16: curly grid</S.Headline>
+            <S.Headline>11/27/2022</S.Headline>
             <S.Descr>Moving on on the next leassons.</S.Descr>
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/quadratic-curve')}>
-            <S.Headline>fithteen: quadratic curve</S.Headline>
-            <S.Headline>23/10/2022</S.Headline>
+            <S.Headline>15: quadratic curve</S.Headline>
+            <S.Headline>11/23/2022</S.Headline>
             <S.Descr>
               This one is actually not any art. It&lsquo;s an exercise that took
               me a while to overcome some bugs, most of them regarding frame
@@ -39,8 +53,8 @@ const GenerativeTemplate = () => {
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/tao')}>
-            <S.Headline>fourteen: tao</S.Headline>
-            <S.Headline>17/10/2022</S.Headline>
+            <S.Headline>14: tao</S.Headline>
+            <S.Headline>11/17/2022</S.Headline>
             <S.Descr>
               With this art, I finally started to challenge myself to achieve
               something on my own, not just following some professor&lsquo;s
@@ -56,8 +70,8 @@ const GenerativeTemplate = () => {
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/heart')}>
-            <S.Headline>thirteen: heart</S.Headline>
-            <S.Headline>12/10/2022</S.Headline>
+            <S.Headline>13: heart</S.Headline>
+            <S.Headline>11/12/2022</S.Headline>
             <S.Descr>
               That&lsquo;s the last step before I draw the Tao. The curves on
               the heart&lsquo;s shape are the missing step to get all
@@ -67,8 +81,8 @@ const GenerativeTemplate = () => {
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/workers-party-start')}>
-            <S.Headline>twelve: red star</S.Headline>
-            <S.Headline>12/10/2022</S.Headline>
+            <S.Headline>12: red star</S.Headline>
+            <S.Headline>11/12/2022</S.Headline>
             <S.Descr>
               Short break on the classes to try something on my own. Then I
               decieded to draw a red start following the exactly same approach
@@ -83,7 +97,7 @@ const GenerativeTemplate = () => {
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/clipping-mask')}>
-            <S.Headline>eleven: clipping mask</S.Headline>
+            <S.Headline>11: clipping mask</S.Headline>
             <S.Headline>11/10/2022</S.Headline>
             <S.Descr>
               Now properly using the canvas-sketch-utils library, which I should
@@ -98,7 +112,7 @@ const GenerativeTemplate = () => {
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/colorful-rectangles')}>
-            <S.Headline>ten: colorful rectangles</S.Headline>
+            <S.Headline>10: colorful rectangles</S.Headline>
             <S.Headline>11/09/2022</S.Headline>
             <S.Descr>
               Just the same from the previous exercise, but including some other
@@ -109,7 +123,7 @@ const GenerativeTemplate = () => {
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/skewed-rectangles')}>
-            <S.Headline>nine: skewed rectangles</S.Headline>
+            <S.Headline>9: skewed rectangles</S.Headline>
             <S.Headline>11/08/2022</S.Headline>
             <S.Descr>
               Let me tell you how much a shitty dev I&lsquo;m: I&lsquo;m that
@@ -123,7 +137,7 @@ const GenerativeTemplate = () => {
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/lettering')}>
-            <S.Headline>eight: lettering</S.Headline>
+            <S.Headline>8: lettering</S.Headline>
             <S.Headline>10/24/2022</S.Headline>
             <S.Descr>
               This one was the last exercise from the Creative Coding Part 1
@@ -134,7 +148,7 @@ const GenerativeTemplate = () => {
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/gui')}>
-            <S.Headline>seven: Graphical User Interface(GUI)</S.Headline>
+            <S.Headline>7: Graphical User Interface(GUI)</S.Headline>
             <S.Headline>10/21/2022</S.Headline>
             <S.Descr>
               Now including the Tweakpane, a compact pane library for
@@ -146,7 +160,7 @@ const GenerativeTemplate = () => {
           </S.Article>
 
           <S.Article onClick={() => handleClick('/arts/animated-noise')}>
-            <S.Headline>six: animated noise</S.Headline>
+            <S.Headline>6: animated noise</S.Headline>
             <S.Headline>10/16/2022</S.Headline>
             <S.Descr>
               Animated noise grid. Since I started this course, my biggest
@@ -157,7 +171,7 @@ const GenerativeTemplate = () => {
             </S.Descr>
           </S.Article>
           <S.Article onClick={() => handleClick('/arts/grid')}>
-            <S.Headline>five: grid</S.Headline>
+            <S.Headline>5: grid</S.Headline>
             <S.Headline>10/15/2022</S.Headline>
             <S.Descr>
               Noise grid based on the amazing Perlin Noise&rsquo;s algorithm.
@@ -168,7 +182,7 @@ const GenerativeTemplate = () => {
             </S.Descr>
           </S.Article>
           <S.Article onClick={() => handleClick('/arts/connections')}>
-            <S.Headline>four: connections</S.Headline>
+            <S.Headline>4: connections</S.Headline>
             <S.Headline>10/14/2022</S.Headline>
             <S.Descr>
               Colored vertices getting connected and disconnected accordingly
@@ -176,7 +190,7 @@ const GenerativeTemplate = () => {
             </S.Descr>
           </S.Article>
           <S.Article onClick={() => handleClick('/arts/bubbles')}>
-            <S.Headline>three: bubbles</S.Headline>
+            <S.Headline>3: bubbles</S.Headline>
             <S.Headline>10/13/2022</S.Headline>
             <S.Descr>
               Third exercise using Canvas tag and first one using
@@ -184,7 +198,7 @@ const GenerativeTemplate = () => {
             </S.Descr>
           </S.Article>
           <S.Article onClick={() => handleClick('/arts/weird-circle')}>
-            <S.Headline>two: weird circle</S.Headline>
+            <S.Headline>2: weird circle</S.Headline>
             <S.Headline>09/31/2022</S.Headline>
             <S.Descr>
               Second exercise with creative forms. Single color irregular
@@ -192,7 +206,7 @@ const GenerativeTemplate = () => {
             </S.Descr>
           </S.Article>
           <S.Article onClick={() => handleClick('/arts/micro-tiles')}>
-            <S.Headline>one: micro tiles</S.Headline>
+            <S.Headline>1: micro tiles</S.Headline>
             <S.Headline>09/15/2022</S.Headline>
             <S.Descr>
               Very first generative forms with Canvas, displaying random little

@@ -219,8 +219,6 @@ const CurlyGrid = () => {
         y: dimensions.h * 0.5,
       }
 
-      console.log(dimensions.w)
-
       if (dimensions.w <= 500) grd.current = new Grid({ cols: 20, rows: 2 })
       if (dimensions.w > 500 && dimensions.w <= 1024)
         grd.current = new Grid({ cols: 35, rows: 3 })
